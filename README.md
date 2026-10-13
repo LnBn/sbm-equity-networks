@@ -13,6 +13,7 @@ After removing the market factor, the correlation matrix of 250 S&P 500 stocks i
 - **Two shocks, opposite signatures.** Comparing calendar years 2019–2024 (30 basins each), the **2020 COVID crash broke sector alignment**: NMI with GICS sectors fell from 0.56–0.60 in 2019 to 0.41–0.45, with no overlap with any other year. It recovered only partly, to 0.46–0.50 in 2021 and about 0.53 afterwards. Cross-sector "reopening/travel", "stay-at-home" and mega-cap tech blocks appear, and core–periphery pairs peak in 2020–21. The **2022 rate shock did the opposite**: sector alignment stayed normal (0.51–0.55) and the structure became *more* assortative (core–periphery pairs 3–8%, the lowest of any year).
 - **Risk.** With monthly rebalancing and the original quick-fit partitions, shrinking Ledoit–Wolf towards SBM blocks is a near-null against constant correlation (GMV volatility ratio 0.996 [0.962, 1.028]). With quarterly rebalancing and annealed partitions it **beats both constant correlation (0.958 [0.941, 0.981]) and GICS-sector blocks (0.978 [0.959, 0.995])**. A control with the old partitions on the same quarterly dates attributes most of the gain to the quarterly design. The better partitions add a further 1.7% (0.983 [0.966, 1.004]), which is borderline significant.
 
+
 The toolkit (graph-tool, MCMC, model selection by description length) comes from my postdoctoral work fitting SBMs to ecological food webs. This project applies it to financial data.
 
 ## Contents
