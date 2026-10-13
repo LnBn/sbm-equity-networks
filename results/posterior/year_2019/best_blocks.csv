@@ -1,0 +1,34 @@
+block,size,omega_rr,top_sector,sector_share,top_sub_industry,sub_industry_share,n_assortative_partners,n_core_periphery_partners,members
+14,5,0.825,Utilities,1.000,Multi-Utilities,0.600,26,6,AEP CMS ETR NEE XEL
+1,3,0.723,Consumer Discretionary,1.000,Homebuilding,1.000,31,1,DHI LEN PHM
+18,8,0.648,Utilities,1.000,Electric Utilities,0.625,29,3,AEE DTE DUK ED EXC FE PEG SO
+25,6,0.615,Real Estate,0.833,Health Care REITs,0.500,28,4,AMT DOC HSY VMRK VTR WELL
+24,14,0.576,Financials,1.000,Regional Banks,0.286,29,3,BAC C FITB GS HBAN IVZ JPM KEY MS NTRS PRU RF SCHW STT
+6,5,0.470,Energy,0.800,Oil & Gas Equipment & Services,0.400,28,4,DVN EOG HAL SLB WYNN
+16,11,0.437,Financials,1.000,Diversified Banks,0.364,29,3,AMP BEN BNY COF MET MTB PFG PNC TFC USB WFC
+5,6,0.392,Information Technology,0.667,Application Software,0.333,31,1,ADBE INTU MA MSFT V VRSN
+31,9,0.372,Information Technology,1.000,Semiconductors,0.778,31,1,ADI AMAT INTC MCHP MU NVDA QCOM TXN WDC
+11,6,0.370,Energy,1.000,Oil & Gas Exploration & Production,0.500,30,2,APA COP CVX OXY VLO XOM
+10,8,0.368,Health Care,1.000,Health Care Equipment,0.500,30,2,ABT BSX DHR LLY MDT MRK SYK TMO
+4,14,0.366,Industrials,0.857,Construction Machinery & Heavy Transportation Equipment,0.214,27,5,CAT CMI EMR ETN FDX ITW NUE PCAR PH PWR RL ROK SWK TXT
+29,9,0.353,Consumer Staples,0.444,Environmental & Facilities Services,0.222,28,4,BALL CL KMB PEP PG PLD PSA RSG WM
+32,7,0.324,Health Care,1.000,Health Care Distributors,0.429,32,0,CAH CI COR CVS DVA GILD MCK
+7,8,0.318,Financials,0.500,Financial Exchanges & Data,0.375,30,2,ADP CME FIS ICE MCD PAYX SBUX SPGI
+26,3,0.289,Financials,1.000,Multi-line Insurance,0.667,31,1,AIG GL L
+28,12,0.253,Industrials,0.917,Air Freight & Logistics,0.250,28,4,CHRW CSX DE DOV EXPD FAST GWW IP MMM NSC UNP UPS
+22,8,0.236,Financials,0.500,Insurance Brokers,0.250,27,5,AON CLX ECL KO MRSH NDAQ TRV YUM
+3,8,0.229,Utilities,0.375,Packaged Foods & Meats,0.250,28,4,AES BXP CNP GIS KIM PPL SJM VZ
+9,6,0.212,Health Care,1.000,Life Sciences Tools & Services,0.333,32,0,A ELV LH RVTY UNH WAT
+2,6,0.199,Financials,0.667,Property & Casualty Insurance,0.333,31,1,AFL AIZ ALL EIX HIG WMT
+0,6,0.180,Materials,0.667,Industrial Gases,0.333,32,0,APD LIN PGR ROP SHW VMC
+13,7,0.160,Consumer Staples,0.571,Aerospace & Defense,0.429,32,0,COST EL LHX LMT NOC SYY TSN
+30,8,0.155,Consumer Discretionary,0.750,Apparel Retail,0.250,32,0,AXP HAS HD LOW NKE ROST TGT TJX
+15,7,0.155,Industrials,0.714,Aerospace & Defense,0.286,30,2,AVY GD HON J MAS PPG RTX
+21,9,0.142,Health Care,1.000,Health Care Equipment,0.444,31,1,AMGN BAX BDX BMY DGX ISRG JNJ PFE ZBH
+17,6,0.122,Real Estate,0.667,Food Retail,0.167,32,0,CBRE HST KR SPG T WY
+19,4,0.120,Information Technology,0.500,Application Software,0.250,31,1,AAPL ADSK AMZN GOOGL
+12,5,0.097,Information Technology,0.600,Application Software,0.200,27,5,AKAM CRM MCO MSI NEM
+8,9,0.096,Consumer Discretionary,0.556,"Hotels, Resorts & Cruise Lines",0.222,26,6,BBY CCL F GE GLW HPQ MAR NTAP TPR
+20,10,0.071,Communication Services,0.200,Advertising,0.100,26,6,ADM BIIB CF IBM LUV OMC ORCL SKYD VTRS WMB
+27,9,0.053,Consumer Discretionary,0.444,Automotive Retail,0.222,26,6,AZO CMCSA DIS DRI EXPE MO ORLY PM STZ
+23,8,0.020,Information Technology,0.625,Aerospace & Defense,0.125,25,7,APH BA BKNG CSCO CTSH EBAY GEN KLAC

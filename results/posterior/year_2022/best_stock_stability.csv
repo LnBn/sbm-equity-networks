@@ -1,0 +1,251 @@
+ticker,block,level1,stay_share,sector,sub_industry
+WY,34,8,0.620,Real Estate,Timber REITs
+STZ,29,0,0.640,Consumer Staples,Distillers & Vintners
+FDX,39,6,0.740,Industrials,Air Freight & Logistics
+ROK,40,3,0.883,Industrials,Electrical Components & Equipment
+TFC,11,1,0.887,Financials,Diversified Banks
+ETR,33,0,0.900,Utilities,Electric Utilities
+MRSH,12,5,0.910,Financials,Insurance Brokers
+VTRS,4,8,0.993,Health Care,Pharmaceuticals
+AEE,15,0,1.000,Utilities,Multi-Utilities
+AEP,15,0,1.000,Utilities,Electric Utilities
+A,32,5,1.000,Health Care,Life Sciences Tools & Services
+AAPL,8,3,1.000,Information Technology,"Technology Hardware, Storage & Peripherals"
+ADI,21,4,1.000,Information Technology,Semiconductors
+ADM,14,2,1.000,Consumer Staples,Agricultural Products & Services
+ABT,2,5,1.000,Health Care,Health Care Equipment
+ADBE,38,4,1.000,Information Technology,Application Software
+AMAT,21,4,1.000,Information Technology,Semiconductor Materials & Equipment
+AMGN,29,0,1.000,Health Care,Biotechnology
+AMP,31,1,1.000,Financials,Asset Management & Custody Banks
+AMT,12,5,1.000,Real Estate,Telecom Tower REITs
+AMZN,38,4,1.000,Consumer Discretionary,Broadline Retail
+AON,30,5,1.000,Financials,Insurance Brokers
+APA,3,7,1.000,Energy,Oil & Gas Exploration & Production
+APD,23,2,1.000,Materials,Industrial Gases
+APH,17,3,1.000,Information Technology,Electronic Components
+AVY,4,8,1.000,Materials,Paper & Plastic Packaging Products & Materials
+AES,22,2,1.000,Utilities,Independent Power Producers & Energy Traders
+AFL,20,8,1.000,Financials,Life & Health Insurance
+AIG,26,8,1.000,Financials,Multi-line Insurance
+AIZ,22,2,1.000,Financials,Multi-line Insurance
+ADP,30,5,1.000,Industrials,Human Resource & Employment Services
+ADSK,38,4,1.000,Information Technology,Application Software
+BBY,9,3,1.000,Consumer Discretionary,Computer & Electronics Retail
+BDX,19,0,1.000,Health Care,Health Care Equipment
+BEN,24,6,1.000,Financials,Asset Management & Custody Banks
+BIIB,16,2,1.000,Health Care,Biotechnology
+BKNG,36,6,1.000,Consumer Discretionary,"Hotels, Resorts & Cruise Lines"
+BMY,29,0,1.000,Health Care,Pharmaceuticals
+BNY,27,8,1.000,Financials,Asset Management & Custody Banks
+BSX,13,2,1.000,Health Care,Health Care Equipment
+BXP,34,8,1.000,Real Estate,Office REITs
+C,31,1,1.000,Financials,Diversified Banks
+CAH,1,0,1.000,Health Care,Health Care Distributors
+CAT,37,8,1.000,Industrials,Construction Machinery & Heavy Transportation Equipment
+CBRE,4,8,1.000,Real Estate,Real Estate Services
+CCL,36,6,1.000,Consumer Discretionary,"Hotels, Resorts & Cruise Lines"
+CF,3,7,1.000,Materials,Fertilizers & Agricultural Chemicals
+CHRW,40,3,1.000,Industrials,Air Freight & Logistics
+CI,1,0,1.000,Health Care,Health Care Services
+CL,19,0,1.000,Consumer Staples,Household Products
+CLX,2,5,1.000,Consumer Staples,Household Products
+CMCSA,16,2,1.000,Communication Services,Cable & Satellite
+CME,30,5,1.000,Financials,Financial Exchanges & Data
+CMI,31,1,1.000,Industrials,Construction Machinery & Heavy Transportation Equipment
+CMS,15,0,1.000,Utilities,Multi-Utilities
+CNP,33,0,1.000,Utilities,Multi-Utilities
+COF,31,1,1.000,Financials,Consumer Finance
+COP,3,7,1.000,Energy,Oil & Gas Exploration & Production
+AXP,31,1,1.000,Financials,Consumer Finance
+AZO,13,2,1.000,Consumer Discretionary,Automotive Retail
+BA,36,6,1.000,Industrials,Aerospace & Defense
+BAC,11,1,1.000,Financials,Diversified Banks
+AKAM,35,5,1.000,Information Technology,Internet Services & Infrastructure
+ALL,20,8,1.000,Financials,Property & Casualty Insurance
+CTSH,0,3,1.000,Information Technology,IT Consulting & Other Services
+CSX,22,2,1.000,Industrials,Rail Transportation
+CVS,1,0,1.000,Health Care,Health Care Services
+CVX,3,7,1.000,Energy,Integrated Oil & Gas
+DHI,7,3,1.000,Consumer Discretionary,Homebuilding
+DHR,32,5,1.000,Health Care,Life Sciences Tools & Services
+DE,37,8,1.000,Industrials,Agricultural & Farm Machinery
+DGX,2,5,1.000,Health Care,Health Care Services
+DOV,18,8,1.000,Industrials,Industrial Machinery & Supplies & Components
+DRI,6,6,1.000,Consumer Discretionary,Restaurants
+DTE,15,0,1.000,Utilities,Multi-Utilities
+DUK,15,0,1.000,Utilities,Electric Utilities
+DVA,9,3,1.000,Health Care,Health Care Services
+DVN,3,7,1.000,Energy,Oil & Gas Exploration & Production
+DIS,39,6,1.000,Communication Services,Movies & Entertainment
+DOC,5,2,1.000,Real Estate,Health Care REITs
+ECL,23,2,1.000,Materials,Specialty Chemicals
+EBAY,0,3,1.000,Consumer Discretionary,Broadline Retail
+EL,17,3,1.000,Consumer Staples,Personal Care Products
+ED,15,0,1.000,Utilities,Multi-Utilities
+ELV,29,0,1.000,Health Care,Managed Health Care
+EMR,37,8,1.000,Industrials,Electrical Components & Equipment
+EOG,3,7,1.000,Energy,Oil & Gas Exploration & Production
+EIX,33,0,1.000,Utilities,Electric Utilities
+ETN,18,8,1.000,Industrials,Electrical Components & Equipment
+EXC,33,0,1.000,Utilities,Electric Utilities
+EXPE,36,6,1.000,Consumer Discretionary,"Hotels, Resorts & Cruise Lines"
+EXPD,40,3,1.000,Industrials,Air Freight & Logistics
+F,24,6,1.000,Consumer Discretionary,Automobile Manufacturers
+FAST,12,5,1.000,Industrials,Trading Companies & Distributors
+FE,33,0,1.000,Utilities,Electric Utilities
+FIS,0,3,1.000,Financials,Transaction & Payment Processing Services
+FITB,11,1,1.000,Financials,Regional Banks
+GD,28,5,1.000,Industrials,Aerospace & Defense
+GE,31,1,1.000,Industrials,Aerospace & Defense
+GEN,16,2,1.000,Information Technology,Systems Software
+GILD,2,5,1.000,Health Care,Biotechnology
+GIS,19,0,1.000,Consumer Staples,Packaged Foods & Meats
+GL,20,8,1.000,Financials,Life & Health Insurance
+GLW,24,6,1.000,Information Technology,Electronic Components
+GOOGL,38,4,1.000,Communication Services,Interactive Media & Services
+GS,31,1,1.000,Financials,Investment Banking & Brokerage
+GWW,5,2,1.000,Industrials,Industrial Machinery & Supplies & Components
+HAL,3,7,1.000,Energy,Oil & Gas Equipment & Services
+HAS,39,6,1.000,Consumer Discretionary,Leisure Products
+HBAN,11,1,1.000,Financials,Regional Banks
+HD,7,3,1.000,Consumer Discretionary,Home Improvement Retail
+HIG,20,8,1.000,Financials,Property & Casualty Insurance
+HON,18,8,1.000,Industrials,Industrial Conglomerates
+HPQ,39,6,1.000,Information Technology,"Technology Hardware, Storage & Peripherals"
+HST,36,6,1.000,Real Estate,Hotel & Resort REITs
+HSY,19,0,1.000,Consumer Staples,Packaged Foods & Meats
+IBM,25,2,1.000,Information Technology,IT Consulting & Other Services
+ICE,35,5,1.000,Financials,Financial Exchanges & Data
+INTC,39,6,1.000,Information Technology,Semiconductors
+INTU,38,4,1.000,Information Technology,Application Software
+IP,34,8,1.000,Materials,Paper & Plastic Packaging Products & Materials
+ISRG,32,5,1.000,Health Care,Health Care Equipment
+COR,1,0,1.000,Health Care,Health Care Distributors
+COST,35,5,1.000,Consumer Staples,Consumer Staples Merchandise Retail
+CRM,38,4,1.000,Information Technology,Application Software
+CSCO,16,2,1.000,Information Technology,Communications Equipment
+BALL,16,2,1.000,Materials,"Metal, Glass & Plastic Containers"
+BAX,13,2,1.000,Health Care,Health Care Equipment
+KEY,11,1,1.000,Financials,Regional Banks
+JPM,27,8,1.000,Financials,Diversified Banks
+JNJ,19,0,1.000,Health Care,Pharmaceuticals
+J,22,2,1.000,Industrials,Construction & Engineering
+IVZ,24,6,1.000,Financials,Asset Management & Custody Banks
+ITW,18,8,1.000,Industrials,Industrial Machinery & Supplies & Components
+KMB,2,5,1.000,Consumer Staples,Household Products
+KIM,34,8,1.000,Real Estate,Retail REITs
+LHX,28,5,1.000,Industrials,Aerospace & Defense
+LIN,18,8,1.000,Materials,Industrial Gases
+LLY,29,0,1.000,Health Care,Pharmaceuticals
+KLAC,21,4,1.000,Information Technology,Semiconductor Materials & Equipment
+KR,1,0,1.000,Consumer Staples,Food Retail
+L,20,8,1.000,Financials,Multi-line Insurance
+LEN,7,3,1.000,Consumer Discretionary,Homebuilding
+KO,19,0,1.000,Consumer Staples,Soft Drinks & Non-alcoholic Beverages
+MAR,36,6,1.000,Consumer Discretionary,"Hotels, Resorts & Cruise Lines"
+MAS,7,3,1.000,Industrials,Building Products
+MCHP,21,4,1.000,Information Technology,Semiconductors
+MCD,2,5,1.000,Consumer Discretionary,Restaurants
+MCO,32,5,1.000,Financials,Financial Exchanges & Data
+MDT,13,2,1.000,Health Care,Health Care Equipment
+MET,26,8,1.000,Financials,Life & Health Insurance
+MCK,1,0,1.000,Health Care,Health Care Distributors
+MMM,18,8,1.000,Industrials,Industrial Conglomerates
+MO,25,2,1.000,Consumer Staples,Tobacco
+MRK,29,0,1.000,Health Care,Pharmaceuticals
+LMT,28,5,1.000,Industrials,Aerospace & Defense
+LOW,7,3,1.000,Consumer Discretionary,Home Improvement Retail
+LUV,36,6,1.000,Industrials,Passenger Airlines
+MA,0,3,1.000,Financials,Transaction & Payment Processing Services
+LH,23,2,1.000,Health Care,Health Care Services
+NDAQ,35,5,1.000,Financials,Financial Exchanges & Data
+NEE,10,5,1.000,Utilities,Multi-Utilities
+NEM,30,5,1.000,Materials,Gold
+NKE,17,3,1.000,Consumer Discretionary,"Apparel, Accessories & Luxury Goods"
+NOC,28,5,1.000,Industrials,Aerospace & Defense
+NSC,22,2,1.000,Industrials,Rail Transportation
+NTAP,39,6,1.000,Information Technology,"Technology Hardware, Storage & Peripherals"
+NTRS,27,8,1.000,Financials,Asset Management & Custody Banks
+NUE,16,2,1.000,Materials,Steel
+NVDA,21,4,1.000,Information Technology,Semiconductors
+OMC,24,6,1.000,Communication Services,Advertising
+ORCL,0,3,1.000,Information Technology,Application Software
+ORLY,13,2,1.000,Consumer Discretionary,Automotive Retail
+OXY,3,7,1.000,Energy,Oil & Gas Exploration & Production
+PAYX,30,5,1.000,Industrials,Human Resource & Employment Services
+PCAR,31,1,1.000,Industrials,Construction Machinery & Heavy Transportation Equipment
+PEG,33,0,1.000,Utilities,Electric Utilities
+PEP,19,0,1.000,Consumer Staples,Soft Drinks & Non-alcoholic Beverages
+PFE,29,0,1.000,Health Care,Pharmaceuticals
+PFG,26,8,1.000,Financials,Life & Health Insurance
+PG,19,0,1.000,Consumer Staples,Personal Care Products
+PGR,1,0,1.000,Financials,Property & Casualty Insurance
+PH,34,8,1.000,Industrials,Industrial Machinery & Supplies & Components
+PHM,7,3,1.000,Consumer Discretionary,Homebuilding
+PLD,12,5,1.000,Real Estate,Industrial REITs
+PM,25,2,1.000,Consumer Staples,Tobacco
+PNC,11,1,1.000,Financials,Diversified Banks
+MS,31,1,1.000,Financials,Investment Banking & Brokerage
+MSFT,8,3,1.000,Information Technology,Systems Software
+MSI,35,5,1.000,Information Technology,Communications Equipment
+MTB,27,8,1.000,Financials,Regional Banks
+MU,6,6,1.000,Information Technology,Semiconductors
+PWR,40,3,1.000,Industrials,Construction & Engineering
+PSA,10,5,1.000,Real Estate,Self-Storage REITs
+PRU,26,8,1.000,Financials,Life & Health Insurance
+PPL,33,0,1.000,Utilities,Electric Utilities
+PPG,4,8,1.000,Materials,Specialty Chemicals
+ROST,9,3,1.000,Consumer Discretionary,Apparel Retail
+ROP,12,5,1.000,Information Technology,Electronic Equipment & Instruments
+QCOM,21,4,1.000,Information Technology,Semiconductors
+RVTY,32,5,1.000,Health Care,Health Care Equipment
+SBUX,17,3,1.000,Consumer Discretionary,Restaurants
+SCHW,31,1,1.000,Financials,Investment Banking & Brokerage
+SHW,23,2,1.000,Materials,Specialty Chemicals
+SJM,19,0,1.000,Consumer Staples,Packaged Foods & Meats
+SKYD,39,6,1.000,Communication Services,Movies & Entertainment
+RF,11,1,1.000,Financials,Regional Banks
+RL,6,6,1.000,Consumer Discretionary,"Apparel, Accessories & Luxury Goods"
+SO,15,0,1.000,Utilities,Electric Utilities
+SLB,3,7,1.000,Energy,Oil & Gas Equipment & Services
+SPGI,32,5,1.000,Financials,Financial Exchanges & Data
+SPG,24,6,1.000,Real Estate,Retail REITs
+SWK,9,3,1.000,Industrials,Industrial Machinery & Supplies & Components
+SYK,13,2,1.000,Health Care,Health Care Equipment
+SYY,16,2,1.000,Consumer Staples,Food Distributors
+STT,27,8,1.000,Financials,Asset Management & Custody Banks
+T,25,2,1.000,Communication Services,Integrated Telecommunication Services
+TGT,40,3,1.000,Consumer Staples,Consumer Staples Merchandise Retail
+TJX,9,3,1.000,Consumer Discretionary,Apparel Retail
+TMO,32,5,1.000,Health Care,Life Sciences Tools & Services
+TPR,6,6,1.000,Consumer Discretionary,"Apparel, Accessories & Luxury Goods"
+TRV,20,8,1.000,Financials,Property & Casualty Insurance
+RSG,10,5,1.000,Industrials,Environmental & Facilities Services
+RTX,14,2,1.000,Industrials,Aerospace & Defense
+TXN,21,4,1.000,Information Technology,Semiconductors
+TSN,25,2,1.000,Consumer Staples,Packaged Foods & Meats
+UNP,22,2,1.000,Industrials,Rail Transportation
+TXT,37,8,1.000,Industrials,Aerospace & Defense
+USB,27,8,1.000,Financials,Diversified Banks
+V,0,3,1.000,Financials,Transaction & Payment Processing Services
+VLO,3,7,1.000,Energy,Oil & Gas Refining & Marketing
+UNH,29,0,1.000,Health Care,Managed Health Care
+VMC,4,8,1.000,Materials,Construction Materials
+VMRK,5,2,1.000,Real Estate,Multi-Family Residential REITs
+VRSN,35,5,1.000,Information Technology,Internet Services & Infrastructure
+VTR,5,2,1.000,Real Estate,Health Care REITs
+VZ,29,0,1.000,Communication Services,Integrated Telecommunication Services
+WAT,23,2,1.000,Health Care,Life Sciences Tools & Services
+WDC,39,6,1.000,Information Technology,"Technology Hardware, Storage & Peripherals"
+UPS,9,3,1.000,Industrials,Air Freight & Logistics
+WELL,5,2,1.000,Real Estate,Health Care REITs
+WFC,11,1,1.000,Financials,Diversified Banks
+WMB,14,2,1.000,Energy,Oil & Gas Storage & Transportation
+WM,10,5,1.000,Industrials,Environmental & Facilities Services
+WMT,30,5,1.000,Consumer Staples,Consumer Staples Merchandise Retail
+WYNN,6,6,1.000,Consumer Discretionary,Casinos & Gaming
+XEL,15,0,1.000,Utilities,Multi-Utilities
+XOM,3,7,1.000,Energy,Integrated Oil & Gas
+YUM,23,2,1.000,Consumer Discretionary,Restaurants
+ZBH,16,2,1.000,Health Care,Health Care Equipment

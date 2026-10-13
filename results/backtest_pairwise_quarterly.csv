@@ -1,0 +1,11 @@
+candidate,reference,period,vol_ratio,ci_low,ci_high
+LW to SBM blocks,LW const-corr,full,0.958,0.941,0.981
+LW to SBM blocks,LW to GICS-sector blocks,full,0.978,0.959,0.995
+LW to SBM blocks,LW identity,full,0.924,0.905,0.951
+Block: SBM,Block: GICS sector,full,0.83,0.746,0.908
+Block: SBM,Block: GICS sub-ind.,full,1.014,0.973,1.041
+Block: SBM,Block: hierarchical,full,0.911,0.885,0.937
+Block: SBM,Block: Louvain kNN,full,0.864,0.817,0.901
+LW to SBM blocks,LW const-corr,2011-2019,0.967,0.949,0.983
+LW to GICS-sector blocks,LW const-corr,2011-2019,0.972,0.963,0.983
+LW to SBM blocks,LW to GICS-sector blocks,2011-2019,0.994,0.982,1.007

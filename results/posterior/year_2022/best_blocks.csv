@@ -1,0 +1,42 @@
+block,size,omega_rr,top_sector,sector_share,top_sub_industry,sub_industry_share,n_assortative_partners,n_core_periphery_partners,members
+15,8,0.855,Utilities,1.000,Multi-Utilities,0.625,35,5,AEE AEP CMS DTE DUK ED SO XEL
+28,4,0.772,Industrials,1.000,Aerospace & Defense,1.000,38,2,GD LHX LMT NOC
+3,11,0.694,Energy,0.909,Oil & Gas Exploration & Production,0.455,39,1,APA CF COP CVX DVN EOG HAL OXY SLB VLO XOM
+11,8,0.692,Financials,1.000,Diversified Banks,0.500,36,4,BAC FITB HBAN KEY PNC RF TFC WFC
+26,4,0.658,Financials,1.000,Life & Health Insurance,0.750,38,2,AIG MET PFG PRU
+33,7,0.655,Utilities,1.000,Electric Utilities,0.857,38,2,CNP EIX ETR EXC FE PEG PPL
+7,6,0.597,Consumer Discretionary,0.833,Homebuilding,0.500,38,2,DHI HD LEN LOW MAS PHM
+21,7,0.566,Information Technology,1.000,Semiconductors,0.714,40,0,ADI AMAT KLAC MCHP NVDA QCOM TXN
+20,6,0.541,Financials,1.000,Property & Casualty Insurance,0.500,39,1,AFL ALL GL HIG L TRV
+19,9,0.514,Consumer Staples,0.778,Packaged Foods & Meats,0.333,36,4,BDX CL GIS HSY JNJ KO PEP PG SJM
+27,6,0.489,Financials,1.000,Asset Management & Custody Banks,0.500,38,2,BNY JPM MTB NTRS STT USB
+5,5,0.421,Real Estate,0.800,Health Care REITs,0.600,40,0,DOC GWW VMRK VTR WELL
+36,7,0.412,Consumer Discretionary,0.571,"Hotels, Resorts & Cruise Lines",0.571,40,0,BA BKNG CCL EXPE HST LUV MAR
+10,4,0.379,Industrials,0.500,Environmental & Facilities Services,0.500,37,3,NEE PSA RSG WM
+1,7,0.364,Health Care,0.714,Health Care Distributors,0.429,39,1,CAH CI COR CVS KR MCK PGR
+32,7,0.362,Health Care,0.714,Life Sciences Tools & Services,0.429,39,1,A DHR ISRG MCO RVTY SPGI TMO
+37,4,0.357,Industrials,1.000,Aerospace & Defense,0.250,39,1,CAT DE EMR TXT
+18,6,0.340,Industrials,0.833,Industrial Conglomerates,0.333,38,2,DOV ETN HON ITW LIN MMM
+12,5,0.325,Real Estate,0.400,Electronic Equipment & Instruments,0.200,37,3,AMT FAST MRSH PLD ROP
+6,5,0.325,Consumer Discretionary,0.800,"Apparel, Accessories & Luxury Goods",0.400,39,1,DRI MU RL TPR WYNN
+14,3,0.318,Consumer Staples,0.333,Aerospace & Defense,0.333,38,2,ADM RTX WMB
+31,10,0.313,Financials,0.700,Investment Banking & Brokerage,0.300,37,3,AMP AXP C CMI COF GE GS MS PCAR SCHW
+34,5,0.302,Real Estate,0.600,Industrial Machinery & Supplies & Components,0.200,37,3,BXP IP KIM PH WY
+29,9,0.297,Health Care,0.778,Pharmaceuticals,0.444,39,1,AMGN BMY ELV LLY MRK PFE STZ UNH VZ
+17,4,0.271,Consumer Discretionary,0.500,"Apparel, Accessories & Luxury Goods",0.250,40,0,APH EL NKE SBUX
+38,6,0.260,Information Technology,0.667,Application Software,0.667,40,0,ADBE ADSK AMZN CRM GOOGL INTU
+24,6,0.257,Financials,0.333,Asset Management & Custody Banks,0.333,39,1,BEN F GLW IVZ OMC SPG
+2,6,0.245,Health Care,0.500,Household Products,0.333,36,4,ABT CLX DGX GILD KMB MCD
+22,6,0.242,Industrials,0.667,Rail Transportation,0.500,40,0,AES AIZ CSX J NSC UNP
+25,5,0.233,Consumer Staples,0.600,Tobacco,0.400,38,2,IBM MO PM T TSN
+4,5,0.230,Materials,0.600,Construction Materials,0.200,38,2,AVY CBRE PPG VMC VTRS
+13,6,0.220,Health Care,0.667,Health Care Equipment,0.667,39,1,AZO BAX BSX MDT ORLY SYK
+8,2,0.202,Information Technology,1.000,Systems Software,0.500,40,0,AAPL MSFT
+30,6,0.166,Financials,0.333,Human Resource & Employment Services,0.333,35,5,ADP AON CME NEM PAYX WMT
+35,6,0.157,Information Technology,0.500,Financial Exchanges & Data,0.333,37,3,AKAM COST ICE MSI NDAQ VRSN
+0,6,0.157,Financials,0.500,Transaction & Payment Processing Services,0.500,40,0,CTSH EBAY FIS MA ORCL V
+23,6,0.154,Materials,0.500,Specialty Chemicals,0.333,34,6,APD ECL LH SHW WAT YUM
+39,8,0.147,Information Technology,0.500,"Technology Hardware, Storage & Peripherals",0.375,39,1,DIS FDX HAS HPQ INTC NTAP SKYD WDC
+40,5,0.135,Industrials,0.800,Air Freight & Logistics,0.400,40,0,CHRW EXPD PWR ROK TGT
+9,6,0.134,Consumer Discretionary,0.500,Apparel Retail,0.333,35,5,BBY DVA ROST SWK TJX UPS
+16,8,0.040,Health Care,0.250,Biotechnology,0.125,24,16,BALL BIIB CMCSA CSCO GEN NUE SYY ZBH

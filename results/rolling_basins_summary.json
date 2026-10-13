@@ -1,0 +1,33 @@
+{
+ "n_windows": 63,
+ "starts_per_window": 8,
+ "median_dl_gain_vs_quick_fit": 112.43293261622239,
+ "median_dl_spread_between_starts": 156.60185636495407,
+ "nmi_within_window_mean": 0.8871600047587832,
+ "nmi_between_windows_best": 0.7656709689115501,
+ "nmi_between_windows_all_starts": 0.7574080111604403,
+ "nmi_between_windows_hier": 0.8215093275051191,
+ "nmi_between_windows_louvain": 0.669833464322049,
+ "crash_vs_other": {
+  "nmi_sector": [
+   0.4430956918227385,
+   0.5635958234413828
+  ],
+  "nmi_subind": [
+   0.7001995974705474,
+   0.7335250528876162
+  ],
+  "pairs_CP": [
+   0.11043401043401042,
+   0.07335831490499986
+  ],
+  "B": [
+   35.0,
+   33.94827586206897
+  ],
+  "nmi_between_best": [
+   0.7297458121975875,
+   0.7688222984478625
+  ]
+ }
+}

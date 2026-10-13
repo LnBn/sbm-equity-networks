@@ -30,7 +30,11 @@ WINDOWS = {"calm_2023_24": ("2023-01-01", "2024-12-31"),
            "stress_2020": ("2020-01-01", "2020-12-31"),
            # one-year calm controls (same length as the 2020 stress window)
            "calm_2023": ("2023-01-01", "2023-12-31"),
-           "calm_2024": ("2024-01-01", "2024-12-31")}
+           "calm_2024": ("2024-01-01", "2024-12-31"),
+           # years either side of 2020 (2022: rate-hike bear market, a different kind of stress)
+           "year_2019": ("2019-01-01", "2019-12-31"),
+           "year_2021": ("2021-01-01", "2021-12-31"),
+           "year_2022": ("2022-01-01", "2022-12-31")}
 CHAINS = [(101, "map"), (102, "map"), (103, "fresh"), (104, "fresh")]
 N_BURN, N_SAMPLES = 500, 1000
 

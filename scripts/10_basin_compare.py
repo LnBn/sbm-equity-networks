@@ -63,10 +63,11 @@ def main(window):
     d.to_csv(res / "basins_summary.csv", index=False, float_format="%.4f")
     print(f"== {window}: {len(d)} basins; pilot partition DL {pilot_dl:.1f} ==")
     print(d.round(3).to_string(index=False))
+    shown = d.drop(columns="seed").dropna(axis=1, how="all")   # no pilot column for non-pilot windows
     print("\ntop 5 vs all (min-max):")
-    print(pd.DataFrame({"top5": d.head(5).drop(columns="seed").agg(["min", "max"]).round(3).astype(str).agg("-".join),
-                        "all": d.drop(columns="seed").agg(["min", "max"]).round(3).astype(str).agg("-".join)}).to_string())
-    print("\nSpearman with DL:", d.drop(columns="seed").corr(method="spearman")["dl"].round(2).to_dict())
+    print(pd.DataFrame({"top5": shown.head(5).agg(["min", "max"]).round(3).astype(str).agg("-".join),
+                        "all": shown.agg(["min", "max"]).round(3).astype(str).agg("-".join)}).to_string())
+    print("\nSpearman with DL:", shown.corr(method="spearman")["dl"].round(2).to_dict())
 
 
 if __name__ == "__main__":

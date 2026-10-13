@@ -18,12 +18,18 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.plotting import plt, savefig  # noqa: E402
 
-WINDOWS = [("calm_2023_24", "Calm 2023-24\n(2 yr)"), ("calm_2023", "Calm 2023\n(1 yr)"),
-           ("calm_2024", "Calm 2024\n(1 yr)"), ("stress_2020", "Stress 2020\n(1 yr)")]
+# Chronological; the 2-year window goes last because its length differs (shown hollow).
+WINDOWS = [("year_2019", "2019"), ("stress_2020", "2020\n(COVID crash)"), ("year_2021", "2021"),
+           ("year_2022", "2022\n(rate shock)"), ("calm_2023", "2023"), ("calm_2024", "2024"),
+           ("calm_2023_24", "2023-24\n(2-yr window)")]
 PANELS = [("nmi_sector", "NMI with GICS sector"), ("nmi_subind", "NMI with GICS sub-industry"),
           ("pairs_CP", "Share of block pairs core-periphery\n(Liu et al. 2023)"),
           ("B", "Number of blocks B")]
-COLOURS = {"calm": "#2a78d6", "stress": "#c4384b"}
+COLOURS = {"calm": "#2a78d6", "stress": "#c4384b", "rate": "#eda100"}
+
+
+def colour(w):
+    return COLOURS["stress" if w == "stress_2020" else "rate" if w == "year_2022" else "calm"]
 
 
 def main():
@@ -39,19 +45,22 @@ def main():
     print(summary.loc[[w for w, _ in present]].to_string())
 
     rng = np.random.default_rng(0)
-    fig, axes = plt.subplots(1, len(PANELS), figsize=(15, 4.2))
+    fig, axes = plt.subplots(1, len(PANELS), figsize=(17, 4.4))
     for ax, (col, title) in zip(axes, PANELS):
         for i, (w, lab) in enumerate(present):
             x = d[d.window == w]
-            c = COLOURS["stress" if w.startswith("stress") else "calm"]
-            ax.scatter(i + rng.uniform(-0.15, 0.15, len(x)), x[col], s=14, color=c, alpha=0.6, lw=0)
+            c = colour(w)
+            two_year = w == "calm_2023_24"
+            ax.scatter(i + rng.uniform(-0.15, 0.15, len(x)), x[col], s=14, alpha=0.6,
+                       facecolor="none" if two_year else c, edgecolor=c, lw=0.8 if two_year else 0)
             best = x.loc[x.dl.idxmin()]
             ax.scatter(i, best[col], s=60, facecolor="none", edgecolor="k", lw=1.2, zorder=3)
         ax.set_xticks(range(len(present)), [lab for _, lab in present], fontsize=8)
         ax.set_title(title, fontsize=9)
-    axes[0].scatter([], [], s=60, facecolor="none", edgecolor="k", label="best basin (lowest DL)")
-    axes[0].legend(fontsize=7, loc="lower left")
-    fig.suptitle("Structure across 30 annealed SBM basins per window (each dot = one basin)", fontsize=10)
+    axes[-1].scatter([], [], s=60, facecolor="none", edgecolor="k", label="best basin (lowest DL)")
+    axes[-1].legend(fontsize=7, loc="lower right")
+    fig.suptitle("Structure across 30 annealed SBM basins per window (each dot = one basin; "
+                 "1-year windows filled, 2-year window hollow)", fontsize=10)
     fig.tight_layout()
     savefig(fig, ROOT / "figures" / "posterior_window_comparison", dpi=150)
 
