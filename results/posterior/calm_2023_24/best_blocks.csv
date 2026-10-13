@@ -1,0 +1,45 @@
+block,size,omega_rr,top_sector,sector_share,top_sub_industry,sub_industry_share,n_assortative_partners,n_core_periphery_partners,members
+29,3,0.866,Consumer Discretionary,1.000,Homebuilding,1.000,43,0,DHI LEN PHM
+14,7,0.784,Utilities,1.000,Electric Utilities,0.571,35,8,AEP CMS DTE DUK ED EIX PPL
+20,9,0.734,Financials,1.000,Regional Banks,0.556,38,5,BAC FITB HBAN KEY MTB PNC RF TFC USB
+36,10,0.672,Energy,1.000,Oil & Gas Exploration & Production,0.500,41,2,APA COP CVX DVN EOG HAL OXY SLB VLO XOM
+33,8,0.659,Utilities,1.000,Electric Utilities,0.625,38,5,AEE CNP ETR EXC FE PEG SO XEL
+25,5,0.611,Financials,1.000,Life & Health Insurance,0.600,39,4,BNY MET PFG PRU STT
+21,5,0.587,Health Care,1.000,Life Sciences Tools & Services,0.800,42,1,A DHR RVTY TMO WAT
+26,5,0.562,Real Estate,1.000,Retail REITs,0.400,37,6,BXP DOC KIM SPG WY
+34,5,0.551,Financials,1.000,Property & Casualty Insurance,0.600,41,2,AFL ALL HIG L TRV
+18,3,0.532,Information Technology,1.000,Semiconductor Materials & Equipment,0.667,43,0,AMAT KLAC NVDA
+5,5,0.518,Consumer Discretionary,0.400,Home Improvement Retail,0.400,40,3,CBRE HD LOW MAS SWK
+12,4,0.505,Industrials,1.000,Aerospace & Defense,1.000,42,1,GD LMT NOC RTX
+37,8,0.464,Consumer Staples,0.875,Household Products,0.250,39,4,CL GIS KMB KO MCD PEP PG SJM
+42,10,0.435,Financials,1.000,Diversified Banks,0.300,38,5,AIG AMP AXP C COF GS JPM MS SCHW WFC
+39,3,0.434,Financials,1.000,Asset Management & Custody Banks,1.000,39,4,BEN IVZ NTRS
+41,4,0.433,Financials,0.500,Environmental & Facilities Services,0.500,42,1,AON MRSH RSG WM
+32,3,0.423,Information Technology,1.000,Semiconductors,0.667,43,0,MU QCOM WDC
+30,8,0.408,Real Estate,0.750,Health Care REITs,0.250,40,3,AES AMT NEE PLD PSA VMRK VTR WELL
+7,5,0.342,Industrials,0.600,Rail Transportation,0.600,40,3,AVY CSX NSC PPG UNP
+6,4,0.333,Financials,0.750,Financial Exchanges & Data,0.750,43,0,ICE MCO SHW SPGI
+23,7,0.333,Industrials,0.857,Construction Machinery & Heavy Transportation Equipment,0.286,42,1,CAT EMR NUE PCAR PH ROK TXT
+43,5,0.333,Information Technology,1.000,Semiconductors,0.800,43,0,ADI ADSK INTC MCHP TXN
+27,5,0.330,Industrials,1.000,Industrial Machinery & Supplies & Components,0.400,40,3,CMI DE DOV ITW J
+35,3,0.302,Communication Services,0.333,Broadline Retail,0.333,42,1,AMZN GOOGL MSFT
+2,4,0.287,Industrials,0.500,Construction Materials,0.250,43,0,FAST GL GWW VMC
+22,8,0.268,Consumer Staples,0.375,Health Care Services,0.250,39,4,DGX JNJ LH MO PM SYY T VZ
+24,4,0.266,Industrials,0.750,Human Resource & Employment Services,0.500,43,0,ADP HON NDAQ PAYX
+31,6,0.258,Health Care,0.500,Health Care Distributors,0.500,43,0,CAH CME COR MCK MSI PGR
+16,8,0.223,Health Care,0.750,Health Care Equipment,0.500,39,4,ABT APD BDX BMY GILD MDT STZ ZBH
+1,6,0.216,Consumer Discretionary,0.333,Automotive Retail,0.333,43,0,AZO LIN MA ORLY ROP V
+17,5,0.210,Health Care,0.600,Managed Health Care,0.400,43,0,CI ELV KR TJX UNH
+3,5,0.187,Consumer Staples,0.400,Household Products,0.200,41,2,CLX ECL HSY VRSN YUM
+9,4,0.182,Health Care,0.750,Health Care Equipment,0.500,41,2,BSX MRK SYK WMT
+38,6,0.178,Industrials,0.500,Aerospace & Defense,0.167,43,0,APH BKNG ETN GE NTAP PWR
+11,6,0.167,Consumer Discretionary,0.500,"Apparel, Accessories & Luxury Goods",0.333,42,1,DIS FDX HPQ RL TPR WYNN
+0,9,0.158,Consumer Discretionary,0.222,Automobile Manufacturers,0.111,35,8,BBY F FIS HST IP LUV MMM SKYD VTRS
+13,9,0.156,Industrials,0.333,Air Freight & Logistics,0.333,37,6,BALL CHRW EBAY EXPD GEN HAS TGT TSN UPS
+40,5,0.153,Health Care,0.800,Biotechnology,0.400,36,7,AMGN BAX BIIB NEM PFE
+15,5,0.151,Consumer Discretionary,0.600,Apparel Retail,0.200,43,0,DVA EL NKE ROST SBUX
+8,4,0.143,Energy,0.250,Aerospace & Defense,0.250,31,12,AIZ CVS LHX WMB
+10,5,0.134,Consumer Discretionary,0.600,"Hotels, Resorts & Cruise Lines",0.600,43,0,AKAM BA CCL EXPE MAR
+4,9,0.111,Information Technology,0.444,IT Consulting & Other Services,0.222,33,10,ADM CF CMCSA CSCO CTSH DRI GLW IBM OMC
+19,3,0.110,Health Care,0.667,Consumer Staples Merchandise Retail,0.333,42,1,COST ISRG LLY
+28,5,0.090,Information Technology,1.000,Application Software,0.800,42,1,AAPL ADBE CRM INTU ORCL

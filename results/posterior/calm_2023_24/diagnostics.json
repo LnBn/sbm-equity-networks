@@ -1,0 +1,21 @@
+{
+ "rhat_dl": 7.133177481407717,
+ "rhat_B": Infinity,
+ "nmi_within_chain": 0.9964825759772903,
+ "nmi_between_chains": 0.9456559639729155,
+ "overlap_within_chain": 0.9942464929859719,
+ "overlap_between_chains": 0.8856293333333333,
+ "nmi_map_vs_samples": 0.9347491532823711,
+ "map_B": 40,
+ "map_dl": -9663.212915432081,
+ "sampled_dl_mean": -9812.9998733714,
+ "n_modes": 2,
+ "main_mode_weight": 0.5,
+ "share_stocks_pmax_below_090": 0.116,
+ "share_stocks_pmax_below_050": 0.0,
+ "consensus_pairs_assortative": 0.9414634146341463,
+ "consensus_pairs_core-periphery": 0.05853658536585366,
+ "consensus_pairs_disassortative": 0.0,
+ "consensus_pairs_n_pairs": 820,
+ "consensus_median_p_type": 1.0
+}
