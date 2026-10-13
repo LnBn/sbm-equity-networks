@@ -27,7 +27,10 @@ from src.posterior import run_chain  # noqa: E402
 from src.preprocess import spy_residuals  # noqa: E402
 
 WINDOWS = {"calm_2023_24": ("2023-01-01", "2024-12-31"),
-           "stress_2020": ("2020-01-01", "2020-12-31")}
+           "stress_2020": ("2020-01-01", "2020-12-31"),
+           # one-year calm controls (same length as the 2020 stress window)
+           "calm_2023": ("2023-01-01", "2023-12-31"),
+           "calm_2024": ("2024-01-01", "2024-12-31")}
 CHAINS = [(101, "map"), (102, "map"), (103, "fresh"), (104, "fresh")]
 N_BURN, N_SAMPLES = 500, 1000
 

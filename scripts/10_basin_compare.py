@@ -41,11 +41,12 @@ def main(window):
     starts = pickle.load(gzip.open(res / "basins.pkl.gz", "rb"))["starts"]
     parts = {s["seed"]: np.unique(s["bs"][0], return_inverse=True)[1] for s in starts}
     best_seed = min(starts, key=lambda s: s["dl"])["seed"]
-    pilot = np.array(next(f["labels"] for f in json.load(open(ROOT / "results" / "pilot_fits.json"))
-                          if f["window"] == window and f["market"] == "spy"
-                          and f["model"] == "dense-W-NDC-nested"))
-    pilot_dl = next(f["dl_nats"] for f in json.load(open(ROOT / "results" / "pilot_fits.json"))
-                    if f["window"] == window and f["market"] == "spy" and f["model"] == "dense-W-NDC-nested")
+    # The pilot partition exists only for the two pilot windows.
+    fits = json.load(open(ROOT / "results" / "pilot_fits.json"))
+    pilot_fit = next((f for f in fits if f["window"] == window and f["market"] == "spy"
+                      and f["model"] == "dense-W-NDC-nested"), None)
+    pilot = np.array(pilot_fit["labels"]) if pilot_fit else None
+    pilot_dl = pilot_fit["dl_nats"] if pilot_fit else float("nan")
     rows = []
     for s in starts:
         b = parts[s["seed"]]
@@ -56,7 +57,8 @@ def main(window):
                      "blocks_assortative": blk["frac_assortative_blocks"],
                      "pairs_A": fr["assortative"], "pairs_CP": fr["core-periphery"],
                      "pairs_D": fr["disassortative"],
-                     "nmi_vs_best": post.nmi(b, parts[best_seed]), "nmi_vs_pilot": post.nmi(b, pilot)})
+                     "nmi_vs_best": post.nmi(b, parts[best_seed]),
+                     "nmi_vs_pilot": post.nmi(b, pilot) if pilot is not None else np.nan})
     d = pd.DataFrame(rows).sort_values("dl")
     d.to_csv(res / "basins_summary.csv", index=False, float_format="%.4f")
     print(f"== {window}: {len(d)} basins; pilot partition DL {pilot_dl:.1f} ==")

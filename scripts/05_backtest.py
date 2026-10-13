@@ -10,7 +10,11 @@ out-of-sample portfolio returns: the GMV portfolio's only goal is low
 variance, so a better covariance estimate should give lower realised vol.
 
 Usage:  python scripts/05_backtest.py
+        python scripts/05_backtest.py --fits results/rolling_basins_partitions.json --hold 63 --tag _quarterly
+        (re-run on another set of rolling partitions, e.g. the annealed quarterly refit,
+        with a matching holding period; outputs get the tag as a suffix)
 """
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -23,9 +27,14 @@ sys.path.insert(0, str(ROOT))
 from src import compare as cmp  # noqa: E402
 from src.data import DATA  # noqa: E402
 from src import covariance as cv  # noqa: E402
-from src.plotting import PALETTE, STRESS_SHADE, plt  # noqa: E402
+from src.plotting import PALETTE, STRESS_SHADE, plt, savefig  # noqa: E402
 
-WINDOW, HOLD = 252, 21
+ap = argparse.ArgumentParser()
+ap.add_argument("--fits", default="results/rolling_partitions.json")
+ap.add_argument("--hold", type=int, default=21, help="trading days each portfolio is held")
+ap.add_argument("--tag", default="", help="suffix for output files")
+ARGS = ap.parse_args()
+WINDOW, HOLD, TAG = 252, ARGS.hold, ARGS.tag
 BOOT_BLOCK, N_BOOT = 21, 2000
 # Head-to-head comparisons reported in the README: (candidate, reference, period)
 PAIRS = [
@@ -79,7 +88,7 @@ def main():
     meta = pd.read_csv(DATA / "universe.csv", index_col=0).loc[stocks.columns]
     fixed = {"sector": cmp.labels_from(meta["sector"]),
              "sub_ind": cmp.labels_from(meta["sub_industry"])}
-    fits = json.load(open(ROOT / "results" / "rolling_partitions.json"))
+    fits = json.load(open(ROOT / ARGS.fits))
 
     daily, weights_prev, turnover, gross = {}, {}, {}, {}
     for f in fits:
@@ -98,7 +107,7 @@ def main():
             gross.setdefault(name, []).append(np.abs(w).sum())
 
     port = pd.DataFrame({k: pd.concat(v) for k, v in daily.items()})
-    port.to_parquet(ROOT / "results" / "gmv_daily_returns.parquet")
+    port.to_parquet(ROOT / "results" / f"gmv_daily_returns{TAG}.parquet")
     ann = np.sqrt(252)
     periods = {"full": (None, None), "2011-2019": ("2011", "2019"),
                "2020": ("2020", "2020"), "2021-2026": ("2021", "2026")}
@@ -112,7 +121,7 @@ def main():
         f"{port[k].std() / port[ref].std():.3f} [{cis[k][0]:.3f}, {cis[k][1]:.3f}]"
         for k in table.index]
     table = table.round(2).sort_values("vol% full")
-    table.to_csv(ROOT / "results" / "backtest_summary.csv")
+    table.to_csv(ROOT / "results" / f"backtest_summary{TAG}.csv")
     print(f"{len(fits)} rebalances, {port.index[0].date()} to {port.index[-1].date()}")
     print(table.to_string())
 
@@ -125,7 +134,7 @@ def main():
                      "vol_ratio": round(pa.std() / pb.std(), 3),
                      "ci_low": round(lo, 3), "ci_high": round(hi, 3)})
     pairwise = pd.DataFrame(rows)
-    pairwise.to_csv(ROOT / "results" / "backtest_pairwise.csv", index=False)
+    pairwise.to_csv(ROOT / "results" / f"backtest_pairwise{TAG}.csv", index=False)
     print(pairwise.to_string(index=False))
     plot(port)
 
@@ -145,7 +154,7 @@ def plot(port):
                  loc="left")
     ax.legend(ncol=3, loc="upper left")
     fig.tight_layout()
-    fig.savefig(ROOT / "figures" / "backtest_rolling_vol.png")
+    savefig(fig, ROOT / "figures" / f"backtest_rolling_vol{TAG}")
     plt.close(fig)
 
 

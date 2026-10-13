@@ -8,6 +8,9 @@
 4. Structure on the posterior: NMI with GICS sectors / sub-industries and the share of
    assortative blocks, computed for every sample (so each comes with a credible interval).
 
+(The per-pair interaction-type matrix is drawn for the best basin by 09_best_basin.py;
+the beta = 1 chains here do not mix, so a consensus over them is not meaningful.)
+
 Usage:  python scripts/07_posterior_summary.py calm_2023_24
 Outputs: results/posterior/<window>/*.csv|json, figures/posterior_<window>_*.png
 """
@@ -29,7 +32,7 @@ from src import compare as cmp  # noqa: E402
 from src import interactions as ix  # noqa: E402
 from src import posterior as post  # noqa: E402
 from src.data import DATA  # noqa: E402
-from src.plotting import plt  # noqa: E402
+from src.plotting import plt, savefig  # noqa: E402
 from src.network import dense_graph  # noqa: E402
 from src.preprocess import spy_residuals  # noqa: E402
 
@@ -43,39 +46,6 @@ def rhat(chains):
     B = n * x.mean(axis=1).var(ddof=1)
     W = x.var(axis=1, ddof=1).mean()
     return float(np.sqrt(((n - 1) / n * W + B / n) / W))
-
-
-def plot_interactions(window, omega, T, prob, order, block_tab):
-    """Left: omega (mean residual correlation) between consensus blocks; right: the
-    Liu et al. interaction type of each pair, shaded by its posterior probability."""
-    from matplotlib.colors import ListedColormap
-    o = np.array(order)
-    W, TT = omega[np.ix_(o, o)], T[np.ix_(o, o)]
-    P = np.take_along_axis(prob[np.ix_(o, o)], np.nan_to_num(TT).astype(int)[..., None], 2)[..., 0]
-    labels = [f"{r} {block_tab.top_sector[r][:14]} ({block_tab['size'][r]})" for r in o]
-    fig, axes = plt.subplots(1, 2, figsize=(15, 7.2))
-    lim = np.nanmax(np.abs(W))
-    im = axes[0].imshow(W, cmap="RdBu_r", vmin=-lim, vmax=lim, interpolation="nearest")
-    fig.colorbar(im, ax=axes[0], fraction=0.04, label="mean residual correlation $\\omega_{rs}$")
-    cols = ["#2a78d6", "#eda100", "#c4384b"]                  # A, CP, D
-    rgba = np.ones(TT.shape + (4,))
-    for code, c in enumerate(cols):
-        m = TT == code
-        rgb = np.array([int(c[i:i + 2], 16) / 255 for i in (1, 3, 5)])
-        rgba[m, :3] = rgb
-        rgba[m, 3] = 0.25 + 0.75 * np.nan_to_num(P[m])
-    axes[1].imshow(rgba, interpolation="nearest")
-    for ax in axes:
-        ax.set_xticks(range(len(o)))
-        ax.set_yticks(range(len(o)), labels, fontsize=6)
-        ax.set_xticklabels([str(r) for r in o], fontsize=6, rotation=90)
-        ax.grid(False)
-    handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in cols]
-    axes[1].legend(handles, ix.TYPES, loc="upper right", fontsize=7, frameon=True)
-    axes[0].set_title("Block densities $\\omega$ (consensus partition, blocks by $\\omega_{rr}$ descending)", fontsize=9)
-    axes[1].set_title("Interaction types (Liu et al. 2023); opacity = posterior probability", fontsize=9)
-    fig.tight_layout()
-    fig.savefig(ROOT / "figures" / f"posterior_{window}_interaction_types.png", dpi=150)
 
 
 def main(window):
@@ -169,32 +139,7 @@ def main(window):
         q.loc[f"pairs_{t}", "map"] = map_fr[t]
     q.to_csv(res / "structure_posterior.csv", float_format="%.3f")
 
-    # Interaction-type matrix for the main mode's consensus partition, with the
-    # posterior probability of each cell's type (samples aligned to the consensus labels).
-    cons = np.unique(main_mode["partition"], return_inverse=True)[1]
-    omega, T, cons_fr = ix.classify(corr, cons)
-    counts, npair = ix.aligned_type_probabilities(corr, pooled[::4], cons)
-    with np.errstate(invalid="ignore"):
-        prob = counts / npair[..., None]
-    sizes = np.bincount(cons)
-    order = [r for r in np.argsort(-np.diag(omega)) if sizes[r] >= 2]   # Liu et al.: omega_rr descending
-    dom = pd.crosstab(cons, meta["sector"].values)
-    block_tab = pd.DataFrame({"block": range(len(sizes)), "size": sizes, "omega_rr": np.diag(omega),
-                              "top_sector": dom.idxmax(axis=1).values,
-                              "top_sector_share": (dom.max(axis=1) / sizes).values,
-                              "members": [" ".join(np.array(tickers)[cons == r]) for r in range(len(sizes))]})
-    block_tab.iloc[order].to_csv(res / "consensus_blocks.csv", index=False, float_format="%.3f")
-    pairs = []
-    for i, r in enumerate(order):
-        for s in order[i + 1:]:
-            pairs.append({"r": r, "s": s, "omega_rr": omega[r, r], "omega_ss": omega[s, s],
-                          "omega_rs": omega[r, s], "type": ix.TYPES[int(T[r, s])],
-                          "p_type": prob[r, s, int(T[r, s])], "n_samples": int(npair[r, s])})
-    pairs = pd.DataFrame(pairs)
-    pairs.to_csv(res / "consensus_pairs.csv", index=False, float_format="%.3f")
-    diag.update({f"consensus_pairs_{k}": v for k, v in cons_fr.items()})
-    diag["consensus_median_p_type"] = float(pairs.p_type.median())
-    plot_interactions(window, omega, T, prob, order, block_tab)
+
     json.dump(diag, open(res / "diagnostics.json", "w"), indent=1)
 
     print(f"== {window} ==")
@@ -225,7 +170,7 @@ def main(window):
     axes[2].set(xlabel="max membership probability", ylabel="stocks",
                 title="Per-stock membership certainty (main mode)")
     fig.tight_layout()
-    fig.savefig(ROOT / "figures" / f"posterior_{window}_diagnostics.png", dpi=150)
+    savefig(fig, ROOT / "figures" / f"posterior_{window}_diagnostics", dpi=150)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT))
 from src import compare as cmp  # noqa: E402
 from src.data import DATA  # noqa: E402
 from src.network import dense_graph, knn_graph  # noqa: E402
-from src.plotting import plt  # noqa: E402
+from src.plotting import plt, savefig  # noqa: E402
 from src.preprocess import preprocess  # noqa: E402
 from src.sbm import fit_sbm, hierarchy_sizes, partition  # noqa: E402
 
@@ -115,7 +115,7 @@ def plot_window(window, corr, labels, sectors, M, path):
     ax.set_title("Stocks per (SBM block, GICS sector)", fontsize=10)
     fig.suptitle(window, fontsize=11)
     fig.tight_layout()
-    fig.savefig(path, dpi=130)
+    savefig(fig, path, dpi=130)
     plt.close(fig)
 
 
@@ -138,7 +138,7 @@ def plot_block_matrix(M_resid, M_raw, resid_names, path):
     axes[0].set_xticks([])
     axes[1].set_xlabel("block"); axes[1].set_ylabel("block")
     fig.tight_layout()
-    fig.savefig(path, dpi=130)
+    savefig(fig, path, dpi=130)
     plt.close(fig)
 
 

@@ -122,5 +122,6 @@ def plot_type_matrix(omega, T, order, labels, prob=None, title_suffix="", path=N
                       fontsize=9)
     fig.tight_layout()
     if path is not None:
-        fig.savefig(path, dpi=150)
+        from src.plotting import savefig
+        savefig(fig, path, dpi=150)
     return fig

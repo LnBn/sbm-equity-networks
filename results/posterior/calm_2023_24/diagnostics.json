@@ -12,10 +12,5 @@
  "n_modes": 2,
  "main_mode_weight": 0.5,
  "share_stocks_pmax_below_090": 0.116,
- "share_stocks_pmax_below_050": 0.0,
- "consensus_pairs_assortative": 0.9414634146341463,
- "consensus_pairs_core-periphery": 0.05853658536585366,
- "consensus_pairs_disassortative": 0.0,
- "consensus_pairs_n_pairs": 820,
- "consensus_median_p_type": 1.0
+ "share_stocks_pmax_below_050": 0.0
 }

@@ -26,3 +26,13 @@ plt.rcParams.update({
     "savefig.dpi": 140,
     "savefig.bbox": "tight",
 })
+
+
+def savefig(fig, path, **kwargs):
+    """Save a figure twice: PNG for quick viewing and PDF (vector) for papers.
+
+    `path` may end in .png, .pdf or have no suffix; both files are written."""
+    from pathlib import Path
+    path = Path(path)
+    for suffix in (".png", ".pdf"):
+        fig.savefig(path.with_suffix(suffix), **kwargs)

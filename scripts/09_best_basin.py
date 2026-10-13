@@ -8,7 +8,8 @@
    assortative / core-periphery partners) and a table of the non-assortative pairs.
 
 Usage:  python scripts/09_best_basin.py calm_2023_24
-Outputs: results/posterior/<window>/best_*.csv|json, figures/posterior_<window>_best_types.png
+Outputs: results/posterior/<window>/best_*.csv|json,
+         figures/posterior_<window>_best_types.{png,pdf}, figures/posterior_<window>_best_blocks.{png,pdf}
 """
 import os
 os.environ.setdefault("OMP_NUM_THREADS", "1")
@@ -36,6 +37,9 @@ from src.preprocess import spy_residuals  # noqa: E402
 _spec = importlib.util.spec_from_file_location("s06", ROOT / "scripts" / "06_posterior_sample.py")
 s06 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(s06)
+_spec = importlib.util.spec_from_file_location("s02", ROOT / "scripts" / "02_pilot.py")
+s02 = importlib.util.module_from_spec(_spec)          # reuse the pilot's block-ordered plot
+_spec.loader.exec_module(s02)
 
 N_LOCAL, N_LOCAL_CHAINS = 150, 2      # calls of multiflip_mcmc_sweep(beta=1, niter=10) per chain
 
@@ -135,6 +139,8 @@ def main(window):
 
     labels = {r: f"{r} {tab.set_index('block').top_sub_industry[r][:22]} ({tab.set_index('block')['size'][r]})"
               for r in order}
+    s02.plot_window(window, corr, b0, meta["sector"].values, omega,
+                    ROOT / "figures" / f"posterior_{window}_best_blocks")
     ix.plot_type_matrix(omega, T, order, labels, prob=prob, title_suffix=f"\n{window}, best basin (DL {best['dl']:.0f})",
                         path=ROOT / "figures" / f"posterior_{window}_best_types.png")
 

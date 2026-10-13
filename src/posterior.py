@@ -98,3 +98,25 @@ def partition_modes(g, partitions, seed=1):
         out.append({"weight": m.get_M() / len(partitions), "partition": cons,
                     "marginals": P, "B": int(cons.max() + 1)})
     return sorted(out, key=lambda d: -d["weight"])
+
+
+ANNEAL = [(0.5, 20), (0.7, 20), (0.85, 20), (1.0, 20)]   # (beta, calls of 10 multiflip sweeps)
+
+
+def anneal_start(g, seed, anneal=ANNEAL, greedy_multiflip=50, greedy_multilevel=3):
+    """One annealed start of the nested weighted SBM (the procedure of 08_basin_search.py).
+
+    Agglomerative fit from one initialisation, a gentle anneal with multiflip sweeps at
+    increasing beta (so it can climb out of shallow basins), then greedy refinement at
+    beta = inf with multiflip and a few multilevel sweeps. Returns (state, DL)."""
+    state, _ = fit_sbm(g, weighted=True, deg_corr=False, nested=True,
+                       n_init=1, n_sweeps=0, seed=seed)
+    gt.seed_rng(seed)
+    for beta, n in anneal:
+        for _ in range(n):
+            state.multiflip_mcmc_sweep(beta=beta, niter=10)
+    for _ in range(greedy_multiflip):
+        state.multiflip_mcmc_sweep(beta=np.inf, niter=10)
+    for _ in range(greedy_multilevel):
+        state.multilevel_mcmc_sweep(beta=np.inf, niter=1)
+    return state, state.entropy()

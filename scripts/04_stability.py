@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src import compare as cmp  # noqa: E402
 from src.data import DATA  # noqa: E402
-from src.plotting import GREY, PALETTE, STRESS_SHADE, plt  # noqa: E402
+from src.plotting import GREY, PALETTE, STRESS_SHADE, plt, savefig  # noqa: E402
 from src.preprocess import spy_residuals  # noqa: E402
 
 WINDOW = 252
@@ -131,7 +131,7 @@ def plot(df, has_crash):
     ax.set_ylabel("mean pairwise\nraw correlation")
     ax.set_title("d. Market stress proxy (shaded: windows containing Feb-Apr 2020)", loc="left")
     fig.tight_layout()
-    fig.savefig(ROOT / "figures" / "rolling_stability.png")
+    savefig(fig, ROOT / "figures" / "rolling_stability")
     plt.close(fig)
 
 
