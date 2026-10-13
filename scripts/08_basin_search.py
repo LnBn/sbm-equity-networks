@@ -1,7 +1,7 @@
 """Global search for low-DL partitions (basins) of the nested weighted SBM, in parallel.
 
 Why: at beta = 1 neither multiflip nor multilevel merge-split moves cross between the
-local optima found for this network (gaps of 40-80 nats, i.e. posterior odds of e^40+),
+local optima found for this network (chains settled up to 77 nats apart, i.e. posterior odds of e^37+ between levels),
 so chains stay in whichever basin they start in. The posterior is therefore dominated
 by the lowest basin found, and the useful questions become: how low can we get, and do
 the good basins agree on the structure we report?
