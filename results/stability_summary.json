@@ -1,0 +1,46 @@
+{
+  "n_windows": 189,
+  "median_B": 34.0,
+  "B_range": [
+    22,
+    43
+  ],
+  "nmi_sector": {
+    "sbm": {
+      "mean": 0.545,
+      "std": 0.052
+    },
+    "hier": {
+      "mean": 0.598,
+      "std": 0.065
+    },
+    "louvain": {
+      "mean": 0.554,
+      "std": 0.091
+    }
+  },
+  "nmi_sbm_subind_mean": 0.723,
+  "nmi_month_mean": {
+    "sbm": 0.824,
+    "hier_B": 0.878,
+    "louvain_knn": 0.757
+  },
+  "nmi_year_mean": {
+    "sbm": 0.634,
+    "hier_B": 0.687,
+    "louvain_knn": 0.499
+  },
+  "crash_windows": {
+    "nmi_sbm_sector": 0.44,
+    "nmi_sbm_sector_other": 0.553,
+    "B": 33.6,
+    "B_other": 32.6,
+    "frac_assortative": 0.484,
+    "frac_assortative_other": 0.573,
+    "mean_raw_corr": 0.55,
+    "mean_raw_corr_other": 0.334,
+    "nmi_month_sbm_entering_crash": 0.732,
+    "nmi_month_sbm_all": 0.824
+  },
+  "corr_nmi_sector_vs_mean_corr": -0.146
+}

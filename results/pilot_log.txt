@@ -1,0 +1,163 @@
+
+=== calm_2023_24: partition comparison ===
+                     partition  K  NMI_vs_GICS  ARI_vs_GICS  NMI_vs_SBM  DL_minus_SBM_nats  frac_assortative  within_corr  between_corr
+SBM (dense-W-NDC-nested, B=40) 40        0.556        0.175       1.000                0.0              0.53        0.349         0.049
+            SBM nested level 1  9        0.341        0.143       0.741             9900.3              0.44        0.206         0.042
+                   GICS sector 11        1.000        1.000       0.556            14819.2              0.64        0.273         0.077
+             GICS sub-industry 95        0.687        0.177       0.757            22907.4              0.73        0.436         0.085
+          Louvain (dense, w>0)  4        0.319        0.169       0.433            14901.5              1.00        0.167         0.012
+                 Louvain (kNN)  8        0.510        0.302       0.574            13503.0              1.00        0.255         0.052
+             Hierarchical K=11 11        0.374        0.174       0.483            13857.4              1.00        0.206        -0.002
+             Hierarchical K=40 40        0.591        0.305       0.683            14481.6              1.00        0.322         0.030
+
+=== stress_2020: partition comparison ===
+                     partition  K  NMI_vs_GICS  ARI_vs_GICS  NMI_vs_SBM  DL_minus_SBM_nats  frac_assortative  within_corr  between_corr
+SBM (dense-W-NDC-nested, B=33) 33        0.423        0.106       1.000                0.0              0.45        0.357         0.035
+            SBM nested level 1  6        0.179        0.078       0.666             8883.7              0.67        0.202        -0.000
+                   GICS sector 11        1.000        1.000       0.423            19315.2              1.00        0.253         0.054
+             GICS sub-industry 95        0.687        0.177       0.681            25819.3              0.62        0.454         0.069
+          Louvain (dense, w>0)  3        0.165        0.082       0.339            15063.6              1.00        0.199         0.034
+                 Louvain (kNN)  7        0.410        0.260       0.512            13218.4              1.00        0.302         0.019
+             Hierarchical K=11 11        0.294        0.107       0.439            12985.5              1.00        0.246         0.001
+             Hierarchical K=33 33        0.472        0.160       0.599            12618.0              1.00        0.377         0.022
+
+=== model selection (compare DL only within the same market/graph) ===
+      window market              model  DL_nats  B        levels  NMI_sector  NMI_subind
+calm_2023_24    raw        dense-W-NDC -11014.2 43                     0.516       0.746
+calm_2023_24    raw dense-W-NDC-nested -11468.3 39 [39, 8, 2, 1]       0.522       0.727
+calm_2023_24    pc1        dense-W-NDC  -8727.9 35                     0.541       0.745
+calm_2023_24    pc1 dense-W-NDC-nested  -9134.7 42    [42, 7, 1]       0.561       0.756
+calm_2023_24    spy        dense-W-NDC  -9102.1 39                     0.554       0.752
+calm_2023_24    spy         dense-W-DC  -8807.9 38                     0.541       0.750
+calm_2023_24    spy dense-W-NDC-nested  -9663.2 40 [40, 9, 2, 1]       0.556       0.757
+calm_2023_24    spy          knn-PP-DC   6025.5  9                     0.492       0.579
+calm_2023_24    spy            knn-NDC   5662.1 18                     0.564       0.693
+calm_2023_24    spy             knn-DC   5759.9 14                     0.562       0.667
+calm_2023_24    spy      knn-DC-nested   5699.4 16    [16, 5, 1]       0.557       0.679
+calm_2023_24    spy           knn-W-DC   3984.7 15                     0.559       0.637
+calm_2023_24    spy    knn-W-DC-nested   3854.9 18    [18, 4, 1]       0.550       0.673
+ stress_2020    raw        dense-W-NDC -13365.2 31                     0.328       0.645
+ stress_2020    raw dense-W-NDC-nested -13666.4 31 [31, 6, 4, 1]       0.314       0.633
+ stress_2020    pc1        dense-W-NDC   5986.8 30                     0.437       0.687
+ stress_2020    pc1 dense-W-NDC-nested   5758.3 34    [34, 6, 1]       0.445       0.703
+ stress_2020    spy        dense-W-NDC   4445.4 31                     0.434       0.684
+ stress_2020    spy         dense-W-DC   4679.8 33                     0.434       0.694
+ stress_2020    spy dense-W-NDC-nested   4099.8 33 [33, 6, 2, 1]       0.423       0.681
+ stress_2020    spy          knn-PP-DC   6302.5  8                     0.407       0.536
+ stress_2020    spy            knn-NDC   5913.1 16                     0.489       0.626
+ stress_2020    spy             knn-DC   6039.5 15                     0.453       0.615
+ stress_2020    spy      knn-DC-nested   5976.7 19    [19, 4, 1]       0.463       0.637
+ stress_2020    spy           knn-W-DC   4252.4 15                     0.440       0.616
+ stress_2020    spy    knn-W-DC-nested   4181.7 15    [15, 4, 1]       0.461       0.620
+{
+  "calm_2023_24": {
+    "best_model": "dense-W-NDC-nested",
+    "B": 40,
+    "resid_mixing": {
+      "frac_assortative_blocks": 0.525,
+      "mean_within": 0.34937173352940665,
+      "mean_between": 0.04947504392836331
+    },
+    "raw_mixing": {
+      "frac_assortative_blocks": 0.46511627906976744,
+      "mean_within": 0.43877568923296234,
+      "mean_between": 0.21309665644711204
+    },
+    "raw_B": 43,
+    "raw_block_mean_corr_sorted": [
+      0.079,
+      0.179,
+      0.18,
+      0.192,
+      0.2,
+      0.211,
+      0.214,
+      0.233,
+      0.27,
+      0.271,
+      0.274,
+      0.319,
+      0.321,
+      0.323,
+      0.331,
+      0.351,
+      0.373,
+      0.373,
+      0.378,
+      0.404,
+      0.412,
+      0.434,
+      0.446,
+      0.468,
+      0.481,
+      0.49,
+      0.497,
+      0.529,
+      0.537,
+      0.551,
+      0.555,
+      0.558,
+      0.604,
+      0.619,
+      0.626,
+      0.626,
+      0.64,
+      0.674,
+      0.688,
+      0.714,
+      0.716,
+      0.729,
+      0.801
+    ],
+    "raw_rank1_fit_corr": 0.7625907967031327
+  },
+  "stress_2020": {
+    "best_model": "dense-W-NDC-nested",
+    "B": 33,
+    "resid_mixing": {
+      "frac_assortative_blocks": 0.45454545454545453,
+      "mean_within": 0.3572113618208149,
+      "mean_between": 0.035058931620731586
+    },
+    "raw_mixing": {
+      "frac_assortative_blocks": 0.12903225806451613,
+      "mean_within": 0.6607916338310236,
+      "mean_between": 0.5325856733161821
+    },
+    "raw_B": 31,
+    "raw_block_mean_corr_sorted": [
+      0.34,
+      0.346,
+      0.458,
+      0.523,
+      0.537,
+      0.546,
+      0.558,
+      0.584,
+      0.621,
+      0.622,
+      0.626,
+      0.638,
+      0.648,
+      0.648,
+      0.658,
+      0.67,
+      0.676,
+      0.686,
+      0.695,
+      0.7,
+      0.707,
+      0.712,
+      0.736,
+      0.754,
+      0.766,
+      0.775,
+      0.802,
+      0.811,
+      0.852,
+      0.886,
+      0.906
+    ],
+    "raw_rank1_fit_corr": 0.891600820105506
+  }
+}

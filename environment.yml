@@ -1,0 +1,22 @@
+# Versions used for the published results (Oct 2026). Create with:
+#   conda env create -f environment.yml
+# graph-tool is not on PyPI; it must come from conda-forge.
+# pyarrow (parquet I/O) and lxml (pandas.read_html) are used indirectly through pandas.
+name: sbm-corr
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - graph-tool=3.9
+  - numpy=2.5
+  - scipy=1.18
+  - pandas=3.0
+  - matplotlib=3.11
+  - networkx=3.7
+  - scikit-learn=1.9
+  - pyarrow=25.0
+  - requests=2.34
+  - lxml=6.1
+  - pip
+  - pip:
+      - yfinance==1.7.0

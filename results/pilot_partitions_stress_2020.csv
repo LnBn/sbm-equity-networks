@@ -1,0 +1,9 @@
+partition,K,NMI_vs_GICS,ARI_vs_GICS,NMI_vs_SBM,DL_minus_SBM_nats,frac_assortative,within_corr,between_corr
+"SBM (dense-W-NDC-nested, B=33)",33,0.423,0.106,1.0,0.0,0.45,0.357,0.035
+SBM nested level 1,6,0.179,0.078,0.666,8883.7,0.67,0.202,-0.0
+GICS sector,11,1.0,1.0,0.423,19315.2,1.0,0.253,0.054
+GICS sub-industry,95,0.687,0.177,0.681,25819.3,0.62,0.454,0.069
+"Louvain (dense, w>0)",3,0.165,0.082,0.339,15063.6,1.0,0.199,0.034
+Louvain (kNN),7,0.41,0.26,0.512,13218.4,1.0,0.302,0.019
+Hierarchical K=11,11,0.294,0.107,0.439,12985.5,1.0,0.246,0.001
+Hierarchical K=33,33,0.472,0.16,0.599,12618.0,1.0,0.377,0.022

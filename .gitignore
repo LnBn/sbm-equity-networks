@@ -1,0 +1,8 @@
+# Downloaded market data (Yahoo Finance terms do not allow redistribution)
+data/
+# Daily GMV portfolio return series written by scripts/05_backtest.py (derived from price data)
+results/gmv_daily_returns.parquet
+*.parquet
+
+__pycache__/
+*.pyc

@@ -1,0 +1,27 @@
+window,market,model,DL_nats,B,levels,NMI_sector,NMI_subind
+calm_2023_24,raw,dense-W-NDC,-11014.2,43,,0.516,0.746
+calm_2023_24,raw,dense-W-NDC-nested,-11468.3,39,"[39, 8, 2, 1]",0.522,0.727
+calm_2023_24,pc1,dense-W-NDC,-8727.9,35,,0.541,0.745
+calm_2023_24,pc1,dense-W-NDC-nested,-9134.7,42,"[42, 7, 1]",0.561,0.756
+calm_2023_24,spy,dense-W-NDC,-9102.1,39,,0.554,0.752
+calm_2023_24,spy,dense-W-DC,-8807.9,38,,0.541,0.75
+calm_2023_24,spy,dense-W-NDC-nested,-9663.2,40,"[40, 9, 2, 1]",0.556,0.757
+calm_2023_24,spy,knn-PP-DC,6025.5,9,,0.492,0.579
+calm_2023_24,spy,knn-NDC,5662.1,18,,0.564,0.693
+calm_2023_24,spy,knn-DC,5759.9,14,,0.562,0.667
+calm_2023_24,spy,knn-DC-nested,5699.4,16,"[16, 5, 1]",0.557,0.679
+calm_2023_24,spy,knn-W-DC,3984.7,15,,0.559,0.637
+calm_2023_24,spy,knn-W-DC-nested,3854.9,18,"[18, 4, 1]",0.55,0.673
+stress_2020,raw,dense-W-NDC,-13365.2,31,,0.328,0.645
+stress_2020,raw,dense-W-NDC-nested,-13666.4,31,"[31, 6, 4, 1]",0.314,0.633
+stress_2020,pc1,dense-W-NDC,5986.8,30,,0.437,0.687
+stress_2020,pc1,dense-W-NDC-nested,5758.3,34,"[34, 6, 1]",0.445,0.703
+stress_2020,spy,dense-W-NDC,4445.4,31,,0.434,0.684
+stress_2020,spy,dense-W-DC,4679.8,33,,0.434,0.694
+stress_2020,spy,dense-W-NDC-nested,4099.8,33,"[33, 6, 2, 1]",0.423,0.681
+stress_2020,spy,knn-PP-DC,6302.5,8,,0.407,0.536
+stress_2020,spy,knn-NDC,5913.1,16,,0.489,0.626
+stress_2020,spy,knn-DC,6039.5,15,,0.453,0.615
+stress_2020,spy,knn-DC-nested,5976.7,19,"[19, 4, 1]",0.463,0.637
+stress_2020,spy,knn-W-DC,4252.4,15,,0.44,0.616
+stress_2020,spy,knn-W-DC-nested,4181.7,15,"[15, 4, 1]",0.461,0.62

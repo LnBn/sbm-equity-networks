@@ -1,0 +1,1 @@
+fitted 189 windows; blocks per window: median 34
