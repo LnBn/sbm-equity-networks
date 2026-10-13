@@ -255,6 +255,26 @@ The same 30-start search on each calendar year (1-year windows; ranges across ba
 - **2022:** almost no cross-sector blocks. The largest core–periphery pairs are **energy** (oil producers) and **defence primes** (GD, LHX, LMT, NOC), each with the same periphery: ADM, RTX, WMB (the war and commodity trade). Banks, insurers, staples and homebuilders are sector-coherent cores.
 - **2023–24:** core–periphery pairs are back within sectors (banks, insurers, utilities, REITs). In 2024, AMZN, GOOGL and MSFT form a cross-sector block (three different GICS sectors), presumably the hyperscalers.
 
+**Quantified** (`scripts/16_mechanism_figures.py`; averages over all 30 basins per year, `results/posterior/sector_mixing_summary.csv`):
+
+| | 2019 | **2020** | 2021 | **2022** | 2023 | 2024 |
+|---|---|---|---|---|---|---|
+| Same-sector pairs sharing a block | 0.166 | **0.095** | 0.103 | 0.116 | 0.132 | 0.126 |
+| Cross-sector pairs sharing a block | 0.0124 | **0.0216** | 0.0166 | **0.0128** | 0.0124 | 0.0164 |
+| Share of a stock's block-mates from other sectors | 0.39 | **0.63** | 0.56 | 0.47 | 0.46 | 0.49 |
+
+- **In 2020, sectors split apart *and* recombined across sector lines.** Cross-sector co-assignment rose by 74% and, on average, 63% of a stock's block-mates came from other sectors (39% in 2019). The fragmentation hit Real Estate (0.22 → 0.07), Health Care (0.18 → 0.06) and Industrials (0.18 → 0.07) hardest. Energy was the exception and held together.
+- **In 2022, cross-sector mixing was back at the 2019 level** (0.0128 against 0.0124). The shock concentrated *within* sectors instead: Energy became extremely cohesive (0.82 of same-sector pairs share a block, against 0.41 in 2019), and Energy–Materials co-assignment rose.
+- **Within-sector cohesion has stayed below 2019 since 2020**, notably for Industrials (0.18 in 2019, 0.05–0.07 since). This is consistent with the incomplete recovery of sector NMI, but blocks are also finer after 2020 (higher B), which lowers co-assignment mechanically. The two effects are not separated here.
+
+![Mixing summary per calendar year, all 30 basins](figures/mechanism_mixing_summary.png)
+
+![Sector cohesion by year (share of same-sector pairs in the same block, mean over 30 basins)](figures/mechanism_sector_cohesion.png)
+
+![Change in sector-pair co-assignment relative to 2019: 2020 (left) and 2022 (right)](figures/mechanism_cross_sector_change.png)
+
+![Alluvial diagram, 2019–2022, of the stocks in the two largest 2020 cross-sector blocks (best basin of each year)](figures/mechanism_alluvial.png)
+
 ### 6.6 Rolling refit: noise floor vs real change
 
 The rolling analysis of Section 4.2 is refitted with annealing on a quarterly subsample: 63 windows of 252 days, 8 annealed starts each (`12_rolling_basins.py`, `13_rolling_basins_summary.py`). The best start improves on the original quick fit by a median of 112 nats.
@@ -326,6 +346,7 @@ for w in calm_2023_24 stress_2020 calm_2023 calm_2024 year_2019 year_2021 year_2
 done
 python scripts/11_window_comparison.py                # calendar-window comparison figure
 python scripts/14_mechanism.py                        # named cross-sector blocks and core-periphery pairs
+python scripts/16_mechanism_figures.py                # sector cohesion / mixing figures, alluvial diagram
 python scripts/12_rolling_basins.py 8 15              # ~1.5 h: annealed quarterly rolling refit
 python scripts/13_rolling_basins_summary.py           # noise floor vs change, figures/rolling_basins
 python scripts/05_backtest.py --fits results/rolling_basins_partitions.json --hold 63 --tag _quarterly
@@ -357,7 +378,7 @@ src/plotting.py      shared figure style; savefig writes PNG + PDF
 src/posterior.py     beta=1 chains, partition modes, annealed starts (anneal_start)
 src/interactions.py  Liu et al. (2023) pairwise interaction types and type-matrix figure
 scripts/01..05       pilot pipeline (see Reproduce)
-scripts/06..15       posterior analysis and robustness (Section 6)
+scripts/06..16       posterior analysis and robustness (Section 6)
 tests/               estimator checks, including LW const-corr against a loop transcription of the paper
 results/             partitions (JSON), summary tables (CSV/JSON) and run logs
 figures/             figures used in this README (PNG + PDF)
