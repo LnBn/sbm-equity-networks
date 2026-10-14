@@ -25,7 +25,7 @@ A longer paper-style write-up is available separately. The toolkit comes from my
 
 Daily adjusted closes from Yahoo Finance (via [`yfinance`](https://github.com/ranaroussi/yfinance)), 4 January 2010 to 30 September 2026, with sectors and sub-industries from the current Wikipedia list of S&P 500 companies. **No market data is included in this repository**; `scripts/01_download.py` downloads it to a local cache (`data/`, gitignored).
 
-The universe is the 250 most liquid stocks, ranked on their first year only, among firms that were already in the index on 1 January 2010 and have a complete price history (`src/data.py`). This avoids picking firms that later joined the index *because* they grew, but it does not remove survivorship bias (see Limitations).
+The universe is the 250 most liquid stocks, ranked on their first year only, among firms that were already in the index on 1 January 2010 and have a complete price history (`src/data.py`). This avoids picking firms that later joined the index *because* they grew, but it does not remove survivorship bias.
 
 ## Method
 
@@ -59,92 +59,6 @@ The universe is the 250 most liquid stocks, ranked on their first year only, amo
 
 **The groups help portfolios a little.** With quarterly rebalancing, shrinking towards the model's groups gives volatility ratios of 0.958 [0.941, 0.981] against constant-correlation shrinkage and 0.978 [0.959, 0.995] against shrinking towards sectors. Does the quality of the fit matter? Groups from quicker, less thorough fits on the same dates already beat constant correlation (0.974), but not sectors (0.995 [0.965, 1.016]): the small edge over sectors needs the better fits. The direct step from quicker to better fits, 0.983 [0.966, 1.004], is not clearly different from zero ([`results/backtest_pairwise_quarterly.csv`](results/backtest_pairwise_quarterly.csv), [`results/partition_effect.csv`](results/partition_effect.csv)).
 
-## Limitations
-
-* **Survivorship bias.** The constituent list is today's, so firms that left the index between 2010 and 2026 are missing. The universe is likely less volatile than the true investable set, so absolute portfolio volatilities are biased down; comparisons between methods should be less affected.
-* **The test design was not fixed in advance.** A monthly version of the portfolio test showed no gain (ratio 0.996 [0.962, 1.028]); the quarterly design was chosen after that. With eleven methods and several periods there are many comparisons.
-* **Fitting.** No search is guaranteed to find the best possible grouping, so results are reported as ranges across fits, and 8 fits per quarterly window leave each rolling point noisy.
-* **Small core–periphery margins.** Most core–periphery pairs rest on differences of a few hundredths of a correlation.
-* **Weakly correlated stocks.** The weight model groups weakly correlated stocks together because their correlations look alike (near zero), not because they move together. A different weight model may behave differently.
-* **NMI depends on the number of groups**, and there are more groups after 2020, so changes in agreement with sectors are partly mechanical.
-* **Labels and data.** GICS labels are today's and are applied to all of history. A few unadjusted spin-off jumps remain in the Yahoo data.
-* **The coarser level of the hierarchy** looks like style groupings (value, rates, defensives), but this has not been tested against factor returns.
-
-## Reproduce
-
-### Environment
-
-graph-tool is not on PyPI; install it from **conda-forge**. `environment.yml` pins the versions used for the results (Python 3.12, graph-tool 3.9, numpy 2.5, pandas 3.0, scikit-learn 1.9, networkx 3.7, yfinance 1.7.0).
-
-```bash
-git clone <repo-url> sbm-equity-networks
-cd sbm-equity-networks
-conda env create -f environment.yml      # uses the conda-forge channel
-conda activate sbm-corr
-```
-
-### Pipeline
-
-Run from the repository root. Times are for a 16-core machine; the full pipeline takes about 25 minutes plus the download.
-
-```bash
-python tests/test_covariance.py          # < 10 s: estimator unit tests
-python scripts/01_download.py            # ~2 min: Wikipedia + yfinance -> data/ (cached)
-python scripts/02_pilot.py --refit       # ~5 min: model selection (13 variants on two windows)
-python scripts/03_rolling_fits.py        # ~18 min: SBM, Louvain and hierarchical fits on 189 windows
-python scripts/04_stability.py           # ~1 min: stability metrics, figures/rolling_stability.png
-python scripts/05_backtest.py            # ~15 s: GMV backtest, figures/backtest_rolling_vol.png
-
-# Many fits per window, calendar years, quarterly refit and portfolio test
-python scripts/06_posterior_sample.py calm_2023_24    # ~20 min: four beta=1 chains
-python scripts/07_posterior_summary.py calm_2023_24   # chain diagnostics
-for w in calm_2023_24 stress_2020 calm_2023 calm_2024 year_2019 year_2021 year_2022; do
-  python scripts/08_basin_search.py $w 30 15          # ~5 min per window on 15 cores: 30 annealed starts
-  python scripts/10_basin_compare.py $w               # structure of every basin
-  python scripts/09_best_basin.py $w                  # best basin: local uncertainty, Liu types, figures
-done
-python scripts/11_window_comparison.py                # calendar-window comparison figure
-python scripts/14_mechanism.py                        # named cross-sector blocks and core-periphery pairs
-python scripts/16_mechanism_figures.py                # sector cohesion / mixing figures, alluvial diagram
-python scripts/12_rolling_basins.py 8 15              # ~1.5 h: annealed quarterly rolling refit
-python scripts/13_rolling_basins_summary.py           # noise floor vs change, figures/rolling_basins
-python scripts/05_backtest.py --fits results/rolling_basins_partitions.json --hold 63 --tag _quarterly
-python scripts/15_partition_effect.py                 # writes the quick-fit control partitions
-python scripts/05_backtest.py --fits results/rolling_partitions_quarterly_quickfit.json --hold 63 --tag _quarterly_quickfit
-python scripts/15_partition_effect.py                 # direct effect of better partitions
-python scripts/17_heatmaps.py                         # stock-level correlation heatmaps, 2019-2024
-python scripts/18_baselines.py                        # best fits vs GICS, Louvain, hierarchical clustering
-```
-
-Notes:
-
-- `01_download.py` fetches the *current* S&P 500 list from Wikipedia and the price history from Yahoo. Both change over time (index membership changes, Yahoo revises adjusted prices), so a fresh download can select a slightly different universe and give numbers that differ from those in `results/`. Run `02_pilot.py` with `--refit` and rerun `03_rolling_fits.py` after a fresh download, because the cached fits in `results/` refer to the universe of the original download.
-- Without `--refit`, `02_pilot.py` reuses `results/pilot_fits.json` and only rebuilds the tables and figures.
-- To keep the data cache outside the repository, set `SBM_DATA_DIR=/path/to/cache` before running any script.
-- SBM fits are seeded (seed 42, one OpenMP thread per process). On the same data they reproduce exactly.
-- `05_backtest.py` runs in about 15 s on an idle machine. If other jobs are using the CPU, multithreaded BLAS can slow it down badly; `OMP_NUM_THREADS=1 python scripts/05_backtest.py` avoids this.
-- `05_backtest.py` also writes the daily portfolio returns to `results/gmv_daily_returns*.parquet`. Those files are derived from Yahoo prices and are gitignored.
-- Every figure is saved as PNG (shown here) and as vector PDF (`src/plotting.savefig`).
-
-## Repository layout
-
-```
-src/data.py          constituents (Wikipedia), prices (yfinance), universe selection
-src/preprocess.py    log returns -> SPY residuals / PC1 removal
-src/network.py       dense and kNN graph-tool graphs
-src/sbm.py           seeded SBM fits (flat / nested / weighted / planted-partition)
-src/compare.py       Louvain, hierarchical clustering, NMI/ARI, DL of a fixed partition, mixing summaries
-src/covariance.py    sample, Ledoit-Wolf (identity, const-corr, block target), block model, GMV weights
-src/plotting.py      shared figure style; savefig writes PNG + PDF
-src/posterior.py     beta=1 chains, partition modes, annealed starts (anneal_start)
-src/interactions.py  Liu et al. (2023) pairwise interaction types and type-matrix figure
-scripts/01..05       data, model selection, first rolling fits, backtest
-scripts/06..18       many fits per window, calendar years, quarterly refit, figures
-tests/               estimator checks, including LW const-corr against a loop transcription of the paper
-results/             partitions (JSON), summary tables (CSV/JSON) and run logs
-figures/             figures used in this README (PNG + PDF)
-```
-
 ---
 
-Developed with AI assistance (Claude Code).
+AI assistance was used in this writeup.
