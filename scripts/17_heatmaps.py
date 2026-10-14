@@ -4,8 +4,8 @@ For each window, the 250 x 250 matrix of market-residual correlations is reorder
 stocks in the same best-basin block are adjacent. Blocks are grouped by their level-1 group
 (the next level of the nested SBM); within a group, blocks run from the highest internal
 correlation omega_rr to the lowest; within a block, stocks are sorted by GICS sector. A strip on
-the left gives each stock's sector, so a sector-pure block shows as one colour run, and a block
-that mixes sectors shows as several. Sector names are printed next to runs of at least
+the left and along the bottom gives each stock's sector (rows and columns are in the same order),
+so a sector-pure block shows as one colour run, and a block that mixes sectors shows as several. Sector names are printed next to runs of at least
 MIN_RUN stocks, so identity does not rest on colour alone (11 sectors are too many for a
 colour-blind-safe palette).
 
@@ -91,15 +91,23 @@ def panel(ax, corr, sec, b0, b1, title, subtitle):
     for pos in np.flatnonzero(np.diff(grp)) + 0.5:
         ax.axhline(pos, color="#2b2b2a", lw=0.5)
         ax.axvline(pos, color="#2b2b2a", lw=0.5)
-    strip = ax.inset_axes([-0.045, 0, 0.035, 1])
+    # Rows and columns share one order, so the same sector strip runs down the left and along the bottom.
     cmap = ListedColormap([SECTOR_COLOURS[s] for s in SECTORS])
-    strip.imshow(sec[order][:, None], aspect="auto", cmap=cmap, vmin=-0.5, vmax=len(SECTORS) - 0.5,
-                 interpolation="nearest")
-    strip.set_axis_off()
+    kw = dict(aspect="auto", cmap=cmap, vmin=-0.5, vmax=len(SECTORS) - 0.5, interpolation="nearest")
+    left_strip = ax.inset_axes([-0.045, 0, 0.035, 1])
+    left_strip.imshow(sec[order][:, None], **kw)
+    bottom_strip = ax.inset_axes([0, -0.045, 1, 0.035])
+    bottom_strip.imshow(sec[order][None, :], **kw)
+    for strip in (left_strip, bottom_strip):
+        strip.set_axis_off()
     for start, n, s in runs(sec[order]):
         if n >= MIN_RUN:
-            ax.text(-0.055, 1 - (start + n / 2) / len(order), SECTOR_ABBR[SECTORS[s]],
-                    transform=ax.transAxes, ha="right", va="center", fontsize=4.5, color="#52514e")
+            mid = (start + n / 2) / len(order)
+            label = SECTOR_ABBR[SECTORS[s]]
+            ax.text(-0.055, 1 - mid, label, transform=ax.transAxes, ha="right", va="center",
+                    fontsize=4.5, color="#52514e")
+            ax.text(mid, -0.055, label, transform=ax.transAxes, ha="center", va="top", rotation=90,
+                    fontsize=4.5, color="#52514e")
     ax.set_xticks([]); ax.set_yticks([]); ax.grid(False)
     for sp in ax.spines.values():
         sp.set_visible(False)
@@ -121,7 +129,7 @@ def subtitle(window, b0):
 def figure(years, ncols, path, width=6.45):
     """Panels laid out in inches: a title band above each row, a legend band at the bottom."""
     nrows = int(np.ceil(len(years) / ncols))
-    left, right, gap, title_h, row_gap, bottom_h = 0.42, 0.05, 0.42, 0.42, 0.5, 0.6
+    left, right, gap, title_h, row_gap, bottom_h = 0.42, 0.05, 0.42, 0.42, 0.75, 0.85
     pw = (width - left - right - (ncols - 1) * gap) / ncols
     height = title_h + nrows * pw + (nrows - 1) * row_gap + bottom_h
     fig = plt.figure(figsize=(width, height), facecolor="white")
