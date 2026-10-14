@@ -32,15 +32,10 @@ from matplotlib.path import Path as MplPath
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.data import DATA  # noqa: E402
-from src.plotting import plt, savefig  # noqa: E402
+from src.plotting import SECTOR_COLOURS, plt, savefig  # noqa: E402
 
 YEARS = [("year_2019", "2019"), ("stress_2020", "2020"), ("year_2021", "2021"),
          ("year_2022", "2022"), ("calm_2023", "2023"), ("calm_2024", "2024")]
-SECTOR_COLOURS = {   # fixed categorical palette (11 sectors)
-    "Communication Services": "#6250d6", "Consumer Discretionary": "#eb6834",
-    "Consumer Staples": "#1baf7a", "Energy": "#5c4033", "Financials": "#2a78d6",
-    "Health Care": "#e87ba4", "Industrials": "#8a8985", "Information Technology": "#00a3c4",
-    "Materials": "#eda100", "Real Estate": "#008300", "Utilities": "#c4384b"}
 
 
 def load():
@@ -97,9 +92,7 @@ def fig_cohesion_and_change(meta, parts):
             ax.add_patch(Rectangle((j - 0.5, -0.5), 1, len(order), fill=False,
                                    edgecolor="#c4384b" if lab == "2020" else "#eda100", lw=1.6))
     ax.grid(False)
-    fig.colorbar(im, ax=ax, fraction=0.04, label="share of same-sector pairs in the same block")
-    ax.set_title("Sector cohesion by year (mean over 30 annealed basins)\n"
-                 "outlined: 2020 COVID crash (red), 2022 rate shock (amber)", fontsize=9, loc="left")
+    fig.colorbar(im, ax=ax, fraction=0.04, label="share of same-sector pairs in the same group")
     fig.tight_layout()
     savefig(fig, ROOT / "figures" / "mechanism_sector_cohesion", dpi=150)
     # --- Figure 2: cross-sector change vs 2019 ------------------------------------------
@@ -108,8 +101,8 @@ def fig_cohesion_and_change(meta, parts):
              for s in sectors]
     fig, axes = plt.subplots(1, 2, figsize=(13, 5.8))
     lim = 0.15          # colour scale capped so small cross-sector changes stay visible; values are printed
-    for ax, (w, title) in zip(axes, [("stress_2020", "2020 (COVID crash) minus 2019"),
-                                     ("year_2022", "2022 (rate shock) minus 2019")]):
+    for ax, (w, title) in zip(axes, [("stress_2020", "2020 (COVID) minus 2019"),
+                                     ("year_2022", "2022 (rates) minus 2019")]):
         D = mean_M[w] - mean_M["year_2019"]
         im = ax.imshow(D, cmap="RdBu_r", vmin=-lim, vmax=lim)
         for i in range(len(sectors)):
@@ -122,9 +115,7 @@ def fig_cohesion_and_change(meta, parts):
         ax.set_title(title, fontsize=9, loc="left")
         ax.grid(False)
     fig.colorbar(im, ax=axes, fraction=0.025, extend="both",
-                 label="change in share of stock pairs sharing a block (scale capped at ±0.15)")
-    fig.suptitle("Which sectors fragment (diagonal, blue) and which merge across sector lines "
-                 "(off-diagonal, red); mean over 30 basins per year", fontsize=9.5, x=0.01, ha="left")
+                 label="change in share of stock pairs sharing a group")
     savefig(fig, ROOT / "figures" / "mechanism_cross_sector_change", dpi=150)
     return coh
 
@@ -166,7 +157,7 @@ def fig_alluvial(tickers, meta, parts):
             sub = meta["sub_industry"].values[b == blk]
             top = pd.Series(sub).value_counts().index[0]
             boxes[w].append((blk, y, len(members) * unit,
-                             f"block of {(b == blk).sum()}; most common: {top[:24]}"))
+                             f"group of {(b == blk).sum()}; most common: {top[:24]}"))
             for t in members:
                 pos[(w, t)] = y
                 cur[t] = y
@@ -198,10 +189,6 @@ def fig_alluvial(tickers, meta, parts):
     ax.set_xlim(-1.2, xs["year_2022"] + 2.6)
     ax.set_ylim(max(pos.values()) + 2, -2.5)
     ax.axis("off")
-    ax.set_title("Where the 2020 cross-sector blocks came from and went: stocks of the 2020 "
-                 "reopening/travel and cyclical/energy blocks, best basin of each year\n"
-                 "(boxes = SBM blocks, labelled by full block size and its most common sub-industry, which the tracked stocks may not share; "
-                 "bands = stocks, coloured by GICS sector)", fontsize=9, loc="left")
     savefig(fig, ROOT / "figures" / "mechanism_alluvial", dpi=150)
     return chosen
 
@@ -223,9 +210,9 @@ def fig_mixing_summary(meta, parts):
                          "blockmates_other_sector": np.mean(other[n > 0] / n[n > 0])})
     d = pd.DataFrame(rows)
     d.to_csv(ROOT / "results/posterior/sector_mixing_summary.csv", index=False, float_format="%.4f")
-    panels = [("within_sector_coassigned", "Same-sector pairs\nsharing a block"),
-              ("cross_sector_coassigned", "Cross-sector pairs\nsharing a block"),
-              ("blockmates_other_sector", "Share of a stock's block-mates\nfrom other sectors")]
+    panels = [("within_sector_coassigned", "Same-sector pairs\nsharing a group"),
+              ("cross_sector_coassigned", "Cross-sector pairs\nsharing a group"),
+              ("blockmates_other_sector", "Share of a stock's group-mates\nfrom other sectors")]
     rng = np.random.default_rng(0)
     fig, axes = plt.subplots(1, 3, figsize=(13, 3.8))
     for ax, (col, title) in zip(axes, panels):
@@ -236,8 +223,6 @@ def fig_mixing_summary(meta, parts):
             ax.scatter(i, x[x.basin_rank == 0][col], s=55, facecolor="none", edgecolor="k", lw=1.1, zorder=3)
         ax.set_xticks(range(len(YEARS)), [lab for _, lab in YEARS])
         ax.set_title(title, fontsize=9)
-    fig.suptitle("How sectors mix, per calendar year (each dot = one of 30 annealed basins; circle = best basin)",
-                 fontsize=9.5, x=0.01, ha="left")
     fig.tight_layout()
     savefig(fig, ROOT / "figures" / "mechanism_mixing_summary", dpi=150)
     return d.groupby("year", sort=False)[[c for c, _ in panels]].agg(["mean", "min", "max"])

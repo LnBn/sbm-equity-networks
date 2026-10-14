@@ -19,12 +19,13 @@ sys.path.insert(0, str(ROOT))
 from src.plotting import plt, savefig  # noqa: E402
 
 # Chronological; the 2-year window goes last because its length differs (shown hollow).
-WINDOWS = [("year_2019", "2019"), ("stress_2020", "2020\n(COVID crash)"), ("year_2021", "2021"),
-           ("year_2022", "2022\n(rate shock)"), ("calm_2023", "2023"), ("calm_2024", "2024"),
-           ("calm_2023_24", "2023-24\n(2-yr window)")]
-PANELS = [("nmi_sector", "NMI with GICS sector"), ("nmi_subind", "NMI with GICS sub-industry"),
-          ("pairs_CP", "Share of block pairs core-periphery\n(Liu et al. 2023)"),
-          ("B", "Number of blocks B")]
+WINDOWS = [("year_2019", "2019"), ("stress_2020", "2020\n(COVID)"), ("year_2021", "2021"),
+           ("year_2022", "2022\n(rates)"), ("calm_2023", "2023"), ("calm_2024", "2024"),
+           ("calm_2023_24", "2023\u201324\n(2 years)")]
+PANELS = [("nmi_sector", "Agreement with GICS sectors (NMI)"),
+          ("nmi_subind", "Agreement with GICS sub-industries (NMI)"),
+          ("pairs_CP", "Share of pairs of groups that are core\u2013periphery"),
+          ("B", "Number of groups")]
 COLOURS = {"calm": "#2a78d6", "stress": "#c4384b", "rate": "#eda100"}
 
 
@@ -45,7 +46,8 @@ def main():
     print(summary.loc[[w for w, _ in present]].to_string())
 
     rng = np.random.default_rng(0)
-    fig, axes = plt.subplots(1, len(PANELS), figsize=(17, 4.4))
+    fig, axes = plt.subplots(2, 2, figsize=(10, 7))
+    axes = axes.ravel()
     for ax, (col, title) in zip(axes, PANELS):
         for i, (w, lab) in enumerate(present):
             x = d[d.window == w]
@@ -57,10 +59,8 @@ def main():
             ax.scatter(i, best[col], s=60, facecolor="none", edgecolor="k", lw=1.2, zorder=3)
         ax.set_xticks(range(len(present)), [lab for _, lab in present], fontsize=8)
         ax.set_title(title, fontsize=9)
-    axes[-1].scatter([], [], s=60, facecolor="none", edgecolor="k", label="best basin (lowest DL)")
+    axes[-1].scatter([], [], s=60, facecolor="none", edgecolor="k", label="best fit")
     axes[-1].legend(fontsize=7, loc="lower right")
-    fig.suptitle("Structure across 30 annealed SBM basins per window (each dot = one basin; "
-                 "1-year windows filled, 2-year window hollow)", fontsize=10)
     fig.tight_layout()
     savefig(fig, ROOT / "figures" / "posterior_window_comparison", dpi=150)
 

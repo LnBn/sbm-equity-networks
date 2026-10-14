@@ -8,6 +8,11 @@ PALETTE = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100",
            "#e87ba4", "#008300", "#6250d6", "#e34948"]
 GREY = "#8a8985"
 STRESS_SHADE = "#e9e8e4"
+SECTOR_COLOURS = {   # one fixed colour per GICS sector, shared by all figures
+    "Communication Services": "#6250d6", "Consumer Discretionary": "#eb6834",
+    "Consumer Staples": "#1baf7a", "Energy": "#5c4033", "Financials": "#2a78d6",
+    "Health Care": "#e87ba4", "Industrials": "#8a8985", "Information Technology": "#00a3c4",
+    "Materials": "#eda100", "Real Estate": "#008300", "Utilities": "#c4384b"}
 
 plt.rcParams.update({
     "figure.facecolor": "#fcfcfb",

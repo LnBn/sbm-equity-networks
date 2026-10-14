@@ -94,20 +94,19 @@ def main():
         ax.axvspan(CRASH[0], CRASH[1] + pd.Timedelta(days=365), color=STRESS_SHADE, lw=0, zorder=0)
     ax = axes[0]
     ax.fill_between(df.index, df.nmi_within_min, df.nmi_within_mean, color=GREY, alpha=0.3,
-                    label="same window, different starts (min-mean): noise floor")
-    ax.plot(df.index, df.nmi_between_best, color=PALETTE[0], label="SBM: consecutive quarters (best starts)")
-    ax.plot(df.index, df.nmi_between_hier, color=PALETTE[1], label="hierarchical: consecutive quarters")
-    ax.set_ylabel("NMI")
-    ax.set_title("Partition stability vs optimiser noise (shaded: windows containing Feb-Apr 2020)", loc="left")
+                    label="repeated fits of the same window (optimiser noise)")
+    ax.plot(df.index, df.nmi_between_best, color=PALETTE[0], label="model: consecutive quarters")
+    ax.plot(df.index, df.nmi_between_hier, color=PALETTE[1], label="hierarchical clustering: consecutive quarters")
+    ax.set_ylabel("agreement (NMI)")
     ax.legend(fontsize=7, loc="lower left")
     ax = axes[1]
-    ax.plot(df.index, df.nmi_sector, color=PALETTE[0], label="vs GICS sector")
-    ax.plot(df.index, df.nmi_subind, color=PALETTE[2], label="vs GICS sub-industry")
-    ax.set_ylabel("NMI of best partition")
+    ax.plot(df.index, df.nmi_sector, color=PALETTE[0], label="with GICS sectors")
+    ax.plot(df.index, df.nmi_subind, color=PALETTE[2], label="with GICS sub-industries")
+    ax.set_ylabel("agreement (NMI)")
     ax.legend(fontsize=7, loc="lower left")
     ax = axes[2]
     ax.plot(df.index, 100 * df.pairs_CP, color=PALETTE[3])
-    ax.set_ylabel("% block pairs core-periphery\n(Liu et al. 2023)")
+    ax.set_ylabel("% of pairs of groups\nthat are core\u2013periphery")
     fig.tight_layout()
     savefig(fig, ROOT / "figures" / "rolling_basins")
 

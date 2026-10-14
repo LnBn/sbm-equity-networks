@@ -141,7 +141,7 @@ def main(window):
               for r in order}
     s02.plot_window(window, corr, b0, meta["sector"].values, omega,
                     ROOT / "figures" / f"posterior_{window}_best_blocks")
-    ix.plot_type_matrix(omega, T, order, labels, prob=prob, title_suffix=f"\n{window}, best basin (DL {best['dl']:.0f})",
+    ix.plot_type_matrix(omega, T, order, labels, prob=prob,
                         path=ROOT / "figures" / f"posterior_{window}_best_types.png")
 
     print(json.dumps({k: round(v, 3) if isinstance(v, float) else v for k, v in diag.items()}, indent=1))

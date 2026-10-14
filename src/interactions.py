@@ -102,7 +102,7 @@ def plot_type_matrix(omega, T, order, labels, prob=None, title_suffix="", path=N
     fig, axes = plt.subplots(1, 2, figsize=(15, 7.2))
     lim = np.nanmax(np.abs(W))
     im = axes[0].imshow(W, cmap="RdBu_r", vmin=-lim, vmax=lim, interpolation="nearest")
-    fig.colorbar(im, ax=axes[0], fraction=0.04, label=r"mean residual correlation $\omega_{rs}$")
+    fig.colorbar(im, ax=axes[0], fraction=0.04, label="average residual correlation")
     rgba = np.ones(TT.shape + (4,))
     for code, c in enumerate(TYPE_COLOURS):
         m = TT == code
@@ -115,11 +115,8 @@ def plot_type_matrix(omega, T, order, labels, prob=None, title_suffix="", path=N
         ax.grid(False)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in TYPE_COLOURS]
     axes[1].legend(handles, TYPES, loc="upper right", fontsize=7, frameon=True)
-    axes[0].set_title(r"Block densities $\omega$ (blocks ordered by $\omega_{rr}$, descending)" + title_suffix,
-                      fontsize=9)
-    axes[1].set_title("Pairwise interaction types (Liu et al. 2023)"
-                      + ("; opacity = posterior probability" if prob is not None else "") + title_suffix,
-                      fontsize=9)
+    axes[0].set_title("Average correlation within and between groups" + title_suffix, fontsize=10)
+    axes[1].set_title("Type of each pair of groups" + title_suffix, fontsize=10)
     fig.tight_layout()
     if path is not None:
         from src.plotting import savefig
