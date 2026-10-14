@@ -39,25 +39,17 @@ The universe is the 250 most liquid stocks, ranked on their first year only, amo
 
 ## Results
 
-**Robustness.** Repeated fits of the same window end at slightly different groupings, but these are very similar: in 2023–24 every fit agrees closely with the best one (NMI of at least 0.89), and every statistic reported here holds in every fit. All results below are from these repeated fits ([`results/posterior/`](results/posterior/)).
+**The groups refine sectors.** The model finds a few dozen groups, much closer to GICS sub-industries than to sectors. Many are clean industry groups, such as regional banks, utilities, oil producers or defence contractors. Others join industries that share an exposure, such as rate-sensitive utilities and real-estate trusts.
 
-**The groups refine sectors.** The best 2023–24 fit has 44 groups. Its agreement with GICS sectors is moderate (NMI 0.55) and with sub-industries much higher (0.77). Many groups are clean industry groups; others mix industries that share an exposure, such as interest-rate-sensitive utilities and REITs ([`results/posterior/baselines.csv`](results/posterior/baselines.csv)).
+**Almost all groups are communities.** For almost every pair of groups, each group is tighter internally than with the other. The few exceptions are among utilities, banks and real estate, where a looser group is tied more closely to a tighter neighbour than to itself.
 
-**Almost all pairs of groups are communities.** In the best 2023–24 fit, 94% of pairs of groups are community pairs, 6% core–periphery and none disassortative. Most core–periphery margins are small; the substantive ones are in the utilities, banks and REIT complexes.
-
-![Within-group and between-group correlations and the type of each pair of groups, best 2023–24 fit](figures/posterior_calm_2023_24_best_types.png)
-
-**2020 broke the link between groups and sectors; 2022 did not.** Agreement with sectors fell from 0.56–0.60 in 2019 to 0.41–0.45 in 2020 (ranges across fits), lower than any fit of any other year. This holds for every fit and for one-year as well as two-year windows. In 2020 one group held travel and reopening stocks from five sectors (BA, CCL, MAR, EXPE, WYNN and others), another held stay-at-home stocks (COST, WMT, KR, CLX), and a large set of financial, travel, energy and cyclical stocks moved against technology. Averaged over fits, the share of a stock's group-mates from other sectors rose from 39% in 2019 to 63% in 2020. In 2022 it was 47%, close to 2019: the change came within sectors, and energy became a single tight group (10 of its 11 stocks) that has stayed together since. Agreement with sectors has not returned to its 2019 level, but groups are also finer after 2020, which lowers within-sector agreement partly mechanically.
+**COVID mixed sectors; the 2022 rate rise did not.** In 2020 the groups lined up with sectors far less than in any other year. Stocks regrouped by their exposure to the pandemic: one group held travel and reopening stocks from five sectors, another held stay-at-home stocks. The share of a stock's group-mates from other sectors rose from 39% in 2019 to 63% in 2020. In 2022 it was 47%, close to normal; the change came within sectors instead, and energy became one tight group. The old structure has only partly returned since.
 
 ![Agreement with sectors and sub-industries, share of core–periphery pairs and number of groups, 2019–2024; each dot is one fit](figures/posterior_window_comparison.png)
 
-![How sectors mix, year by year](figures/mechanism_mixing_summary.png)
+**The results do not depend on the fit.** Repeated fits of the same period give very similar groupings, and every result above holds for all of them. Refitting every quarter from 2011 shows the same break when the 2020 crash enters the window.
 
-**The 2020 break also shows in the quarterly refits.** Agreement with sectors is 0.53–0.65 in every window ending 2011–2019 and falls to 0.41 when the crash enters the window. Two fits of the same window agree to NMI 0.89 on average, while best fits in consecutive quarters agree to 0.77: about half of the apparent quarter-to-quarter change is fitting noise, not market change.
-
-![Stability against fitting noise (top), agreement with sectors (middle) and share of core–periphery pairs (bottom), quarterly 2011–2026](figures/rolling_basins.png)
-
-**The groups help portfolios a little.** With quarterly rebalancing, shrinking towards the model's groups gives volatility ratios of 0.958 [0.941, 0.981] against constant-correlation shrinkage and 0.978 [0.959, 0.995] against shrinking towards sectors. Does the quality of the fit matter? Groups from quicker, less thorough fits on the same dates already beat constant correlation (0.974), but not sectors (0.995 [0.965, 1.016]): the small edge over sectors needs the better fits. The direct step from quicker to better fits, 0.983 [0.966, 1.004], is not clearly different from zero ([`results/backtest_pairwise_quarterly.csv`](results/backtest_pairwise_quarterly.csv), [`results/partition_effect.csv`](results/partition_effect.csv)).
+**The groups help portfolios a little.** Building minimum-variance portfolios with a covariance estimate shrunk towards the groups gives about 4% lower out-of-sample volatility than standard constant-correlation shrinkage, and about 2% lower than shrinking towards sectors. Groups from quicker, rougher fits beat constant correlation too, but not sectors. It is a modest gain, not a reliable edge.
 
 ---
 
